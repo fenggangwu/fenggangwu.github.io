@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)http://localhost:4000/blog/2018/08/23/data-block-hash-index.html -->
+<html class="gr__localhost"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:url" content="http://localhost:4000/blog/2018/08/23/data-block-hash-">
+  <meta property="og:site_name" content="RocksDB">
+  <meta property="og:title" content="Improving Point-Lookup Using Data Block Hash Index">
+  <meta property="og:image" content="http://localhost:4000/static/og_image.png">
+  <meta property="og:description" content="CPU util directly translates to power consumption, and throughput is cruicial to user experience. We’ve designed and implemented a data block hash index in R...">
+
+  <link rel="stylesheet" href="./Improving Point-Lookup Using Data Block Hash Index _ RocksDB_files/main.css" media="screen">
+  <link rel="icon" href="http://localhost:4000/static/favicon.png" type="image/x-icon">
+  
+
+  <title>Improving Point-Lookup Using Data Block Hash Index | RocksDB</title>
+  <meta name="description" content="CPU util directly translates to power consumption, and throughput is cruicial to user experience. We’ve designed and implemented a data block hash index in R...">
+
+  <link rel="canonical" href="http://localhost:4000/blog/2018/08/23/data-block-hash-">
+  <link rel="alternate" type="application/rss+xml" title="RocksDB" href="http://localhost:4000/feed.xml">
+<style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_loader{background-color:#f5f6f7;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{width:auto;height:auto;min-height:initial;min-width:initial;background:none}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{color:#fff;display:block;padding-top:20px;clear:both;font-size:18px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;bottom:0;left:0;right:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:-webkit-sticky;top:0}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #29487d;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-repeat:no-repeat;background-position:50% 50%;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_customer_chat_bounce_in_v2{animation-duration:300ms;animation-name:fb_bounce_in_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_v2{animation-duration:300ms;animation-name:fb_bounce_out_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_v2_mobile_chat_started{animation-duration:300ms;animation-name:fb_bounce_in_v2_mobile_chat_started;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_v2_mobile_chat_started{animation-duration:300ms;animation-name:fb_bounce_out_v2_mobile_chat_started;transition-timing-function:ease-in}.fb_customer_chat_bubble_pop_in{animation-duration:250ms;animation-name:fb_customer_chat_bubble_bounce_in_animation}.fb_customer_chat_bubble_animated_no_badge{box-shadow:0 3px 12px rgba(0, 0, 0, .15);transition:box-shadow 150ms linear}.fb_customer_chat_bubble_animated_no_badge:hover{box-shadow:0 5px 24px rgba(0, 0, 0, .3)}.fb_customer_chat_bubble_animated_with_badge{box-shadow:-5px 4px 14px rgba(0, 0, 0, .15);transition:box-shadow 150ms linear}.fb_customer_chat_bubble_animated_with_badge:hover{box-shadow:-5px 8px 24px rgba(0, 0, 0, .2)}.fb_invisible_flow{display:inherit;height:0;overflow-x:hidden;width:0}.fb_mobile_overlay_active{background-color:#fff;height:100%;overflow:hidden;position:fixed;visibility:hidden;width:100%}@keyframes fb_bounce_in_v2{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}50%{transform:scale(1.03, 1.03);transform-origin:bottom right}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}}@keyframes fb_bounce_in_v2_mobile_chat_started{0%{opacity:0;top:20px}100%{opacity:1;top:0}}@keyframes fb_bounce_out_v2{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}}@keyframes fb_bounce_out_v2_mobile_chat_started{0%{opacity:1;top:0}100%{opacity:0;top:20px}}@keyframes fb_customer_chat_bubble_bounce_in_animation{0%{bottom:6pt;opacity:0;transform:scale(0, 0);transform-origin:center}70%{bottom:18pt;opacity:1;transform:scale(1.2, 1.2)}100%{transform:scale(1, 1)}}</style></head>
+
+  <body class="docsNavVisible" data-gr-c-s-loaded="true">
+    <div id="fixed_header" class="fixedHeaderContainer visible">
+  <div class="headerWrapper wrapper">
+    <header>
+      <a href="http://localhost:4000/">
+        <img src="./Improving Point-Lookup Using Data Block Hash Index _ RocksDB_files/logo.svg">
+        <h2>RocksDB</h2>
+      </a>
+
+      <div class="navigationWrapper navigationFull" id="flat_nav">
+        <nav class="navigation">
+          <ul>
+            
+            <li class="navItem">
+              
+                
+                <a href="http://localhost:4000/docs/">Docs</a>
+              
+            </li>
+            
+            <li class="navItem">
+              
+                <a href="https://github.com/facebook/rocksdb/">GitHub</a>
+              
+            </li>
+            
+            <li class="navItem">
+              
+                <a href="https://github.com/facebook/rocksdb/tree/master/include/rocksdb">API (C++)</a>
+              
+            </li>
+            
+            <li class="navItem">
+              
+                <a href="https://github.com/facebook/rocksdb/tree/master/java/src/main/java/org/rocksdb">API (Java)</a>
+              
+            </li>
+            
+            <li class="navItem">
+              
+                
+                <a href="http://localhost:4000/support.html">Support</a>
+              
+            </li>
+            
+            <li class="navItem navItemActive">
+              
+                
+                <a href="http://localhost:4000/blog/">Blog</a>
+              
+            </li>
+            
+            <li class="navItem">
+              
+                <a href="https://www.facebook.com/groups/rocksdb.dev/">Facebook</a>
+              
+            </li>
+            
+            
+          </ul>
+        </nav>
+      </div>
+      <div class="navigationWrapper navigationSlider" id="navigation_wrap">
+        <div id="header_nav">
+  <div class="navSlideout">
+    <i class="menuExpand" id="header_nav_expander"><span></span><span></span><span></span></i>
+  </div>
+  <nav class="slidingNav">
+    <ul>
+      
+      <li class="navItem">
+        <a href="http://localhost:4000/docs/">Docs</a>
+      </li>
+      
+      <li class="navItem">
+        <a href="https://github.com/facebook/rocksdb/" target="_blank">GitHub</a>
+      </li>
+      
+      <li class="navItem">
+        <a href="https://github.com/facebook/rocksdb/tree/master/include/rocksdb" target="_blank">API (C++)</a>
+      </li>
+      
+      <li class="navItem">
+        <a href="https://github.com/facebook/rocksdb/tree/master/java/src/main/java/org/rocksdb" target="_blank">API (Java)</a>
+      </li>
+      
+      <li class="navItem">
+        <a href="http://localhost:4000/support.html">Support</a>
+      </li>
+      
+      <li class="navItem">
+        <a href="http://localhost:4000/blog/">Blog</a>
+      </li>
+      
+      <li class="navItem">
+        <a href="https://www.facebook.com/groups/rocksdb.dev/" target="_blank">Facebook</a>
+      </li>
+      
+      
+    </ul>
+  </nav>
+</div>
+<script async="" src="./Improving Point-Lookup Using Data Block Hash Index _ RocksDB_files/analytics.js"></script><script id="facebook-jssdk" src="./Improving Point-Lookup Using Data Block Hash Index _ RocksDB_files/sdk.js"></script><script>
+  var event = document.createEvent('Event');
+  event.initEvent('slide', true, true);
+  document.addEventListener('slide', function (e) {
+    document.body.classList.toggle('sliderActive');
+  }, false);
+  var headerNav = document.getElementById('header_nav');
+  var headerNavExpander = document.getElementById('header_nav_expander');
+  headerNavExpander.addEventListener('click', function(e) {
+    headerNav.classList.toggle('navSlideoutActive');
+    document.dispatchEvent(event);
+  }, false);
+</script>
+      </div>
+    </header>
+  </div>
+</div>
+
+    <div class="navPusher">
+      <div class="docMainWrapper wrapper">
+      <div class="docsNavContainer">
+  <nav class="toc" id="doc_nav">
+    <div class="toggleNav" id="collection_nav">
+      <section class="navWrapper wrapper">
+        <div class="navBreadcrumb wrapper">
+          <div class="navToggle" id="collection_nav_toggler">
+            <i></i>
+          </div>
+          <h2>
+            <a href="http://localhost:4000/blog/">Blog</a>
+            
+          </h2>
+        </div>
+        <div class="navGroups">
+          
+            
+            
+            <div class="navGroup navGroupActive navGroupCurrent">
+  <h3><i>+</i><span>All Posts</span></h3>
+  <ul>
+    
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2018/08/23/data-block-hash-index.html">Improving Point-Lookup Using Data Block Hash Index</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2018/08/01/rocksdb-tuning-advisor.html">Rocksdb Tuning Advisor</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2018/02/05/rocksdb-5-10-2-released.html">RocksDB 5.10.2 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/12/19/write-prepared-txn.html">WritePrepared Transactions</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/12/18/17-auto-tuned-rate-limiter.html">Auto-tuned Rate Limiter</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/09/28/rocksdb-5-8-released.html">RocksDB 5.8 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/08/25/flushwal.html">FlushWAL; less fwrite, faster writes</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/08/24/pinnableslice.html">PinnableSlice; less memcpy with point lookups</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/07/25/rocksdb-5-6-1-released.html">RocksDB 5.6.1 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/06/29/rocksdb-5-5-1-released.html">RocksDB 5.5.1 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/06/26/17-level-based-changes.html">Level-based Compaction Changes</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/05/26/rocksdb-5-4-5-released.html">RocksDB 5.4.5 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/05/14/core-local-stats.html">Core-local Statistics</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/05/12/partitioned-index-filter.html">Partitioned Index/Filters</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/03/02/rocksdb-5-2-1-released.html">RocksDB 5.2.1 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/02/17/bulkoad-ingest-sst-file.html">Bulkloading by ingesting external SST files</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/02/07/rocksdb-5-1-2-released.html">RocksDB 5.1.2 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/01/06/rocksdb-5-0-1-released.html">RocksDB 5.0.1 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2016/09/28/rocksdb-4-11-2-released.html">RocksDB 4.11.2 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2016/07/26/rocksdb-4-8-released.html">RocksDB 4.8 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2016/04/26/rocksdb-4-5-1-released.html">RocksDB 4.5.1 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2016/03/07/rocksdb-options-file.html">RocksDB Options File</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2016/02/25/rocksdb-ama.html">RocksDB AMA</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2016/02/24/rocksdb-4-2-release.html">RocksDB 4.2 Release!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2016/01/29/compaction_pri.html">Option of Compaction Priority</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/11/16/analysis-file-read-latency-by-level.html">Analysis File Read Latency by Level</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/11/10/use-checkpoints-for-efficient-snapshots.html">Use Checkpoints for Efficient Snapshots</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/10/27/getthreadlist.html">GetThreadList</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/07/23/dynamic-level.html">Dynamic Level Size for Level-Based Compaction</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/07/22/rocksdb-is-now-available-in-windows-platform.html">RocksDB is now available in Windows Platform</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/07/17/spatial-indexing-in-rocksdb.html">Spatial indexing in RocksDB</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/07/15/rocksdb-2015-h2-roadmap.html">RocksDB 2015 H2 roadmap</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/06/12/rocksdb-in-osquery.html">RocksDB in osquery</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/04/22/integrating-rocksdb-with-mongodb-2.html">Integrating RocksDB with MongoDB</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/02/27/write-batch-with-index.html">WriteBatchWithIndex: Utility for Implementing Read-Your-Own-Writes</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/02/24/reading-rocksdb-options-from-a-file.html">Reading RocksDB options from a file</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/01/16/migrating-from-leveldb-to-rocksdb-2.html">Migrating from LevelDB to RocksDB</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/09/15/rocksdb-3-5-release.html">RocksDB 3.5 Release!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/09/12/new-bloom-filter-format.html">New Bloom Filter Format</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/09/12/cuckoo.html">Cuckoo Hashing Table Format</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/07/29/rocksdb-3-3-release.html">RocksDB 3.3 Release</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/06/27/rocksdb-3-2-release.html">RocksDB 3.2 release</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/06/27/avoid-expensive-locks-in-get.html">Avoid Expensive Locks in Get()</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/06/23/plaintable-a-new-file-format.html">PlainTable — A New File Format</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/05/22/rocksdb-3-1-release.html">RocksDB 3.1 release</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/05/19/rocksdb-3-0-release.html">RocksDB 3.0 release</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/05/14/lock.html">Reducing Lock Contention in RocksDB</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/04/21/indexing-sst-files-for-better-lookup-performance.html">Indexing SST Files for Better Lookup Performance</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/04/07/rocksdb-2-8-release.html">RocksDB 2.8 release</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/04/02/the-1st-rocksdb-local-meetup-held-on-march-27-2014.html">The 1st RocksDB Local Meetup Held on March 27, 2014</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/03/27/how-to-persist-in-memory-rocksdb-database.html">How to persist in-memory RocksDB database?</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/03/27/how-to-backup-rocksdb.html">How to backup RocksDB?</a></li>
+
+      
+    
+  </ul>
+</div>
+          
+        </div>
+      </section>
+    </div>
+  </nav>
+</div>
+<script>
+  var docsevent = document.createEvent('Event');
+  docsevent.initEvent('docs_slide', true, true);
+  document.addEventListener('docs_slide', function (e) {
+    document.body.classList.toggle('docsSliderActive');
+  }, false);
+
+  var collectionNav = document.getElementById('collection_nav');
+  var collectionNavToggler =
+    document.getElementById('collection_nav_toggler');
+  collectionNavToggler.addEventListener('click', function(e) {
+    collectionNav.classList.toggle('toggleNavActive');
+    document.dispatchEvent(docsevent);
+  });
+
+  var groups = document.getElementsByClassName('navGroup');
+  for(var i = 0; i < groups.length; i++) {
+    var thisGroup = groups[i];
+    thisGroup.onclick = function() {
+      for(var j = 0; j < groups.length; j++) {
+        var group = groups[j];
+        group.classList.remove('navGroupActive');
+      }
+      this.classList.add('navGroupActive');
+    }
+  }
+</script>
+
+      <div class="mainContainer blogContainer postContainer">
+  <div id="main_wrap" class="wrapper mainWrapper">
+    <div class="lonePost">
+<div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Improving Point-Lookup Using Data Block Hash Index _ RocksDB_files/saved_resource" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Fenggang Wu</p>
+    
+    <h1 class="post-title">Improving Point-Lookup Using Data Block Hash Index</h1>
+    <p class="post-meta">Posted August 23, 2018</p>
+  </header>
+
+  <article class="post-content">
+  
+    <p>CPU util directly translates to power consumption, and throughput is cruicial to user experience. We’ve designed and implemented a <em>data block hash index</em> in RocksDB that can both reduce the CPU util and increase the throughput for point lookup queries with a reasonable and tunable space overhead.</p>
+
+<p>Benchmarks with <code class="highlighter-rouge">db_bench</code>  show the CPU utilization of one of the main functions in the point lookup code path, <code class="highlighter-rouge">DataBlockIter::Seek()</code>, is reduced by 21.8%, and the overall RocksDB throughput is increased by 10% under purely cached workloads, at an overhead of 4.6% more space. Shadow testing with Facebook production traffic shows good CPU improvements too.</p>
+
+<h3 id="how-to-use-it">How to use it</h3>
+<p>Two new options are added as part of this feature: <code class="highlighter-rouge">BlockBasedTableOptions::data_block_index_type</code> and <code class="highlighter-rouge">BlockBasedTableOptions::data_block_hash_table_util_ratio</code>.</p>
+
+<p>The hash index is disabled by default unless <code class="highlighter-rouge">BlockBasedTableOptions::data_block_index_type</code> is set to <code class="highlighter-rouge">data_block_index_type = kDataBlockBinaryAndHash</code>. The hash table utilization ratio is adjustable using <code class="highlighter-rouge">BlockBasedTableOptions::data_block_hash_table_util_ratio</code>, which is valid only if <code class="highlighter-rouge">data_block_index_type = kDataBlockBinaryAndHash</code>.</p>
+
+<div class="highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15</pre></td><td class="code"><pre>// the definitions can be found in include/rocksdb/table.h
+
+// The index type that will be used for the data block.
+enum DataBlockIndexType : char {
+  kDataBlockBinarySearch = 0,  // traditional block type
+  kDataBlockBinaryAndHash = 1, // additional hash index
+};
+
+// Set to kDataBlockBinaryAndHash to enable hash index
+DataBlockIndexType data_block_index_type = kDataBlockBinarySearch;
+
+// #entries/#buckets. It is valid only when data_block_hash_index_type is
+// kDataBlockBinaryAndHash.
+double data_block_hash_table_util_ratio = 0.75;
+
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<h3 id="data-block-hash-index-design">Data Block Hash Index Design</h3>
+
+<p>Current data block format groups adjacent keys together as a restart interval. One block consists of multiple restart intervals. The byte offset of the beginning of each restart interval, i.e. a restart point, is stored in an array called restart interval index or binary seek index. RocksDB does a binary search when performing point lookup for keys in data blocks to find the right restart interval the key may reside. We will use binary seek and binary search interchangeably in this post.</p>
+
+<p>In order to find the right location where the key may reside using binary search, multiple key parsing and comparison are needed. Each binary search branching triggers CPU cache miss, causing much CPU utilization. We have seen that this binary search takes up considerable CPU in production use-cases.</p>
+
+<p><img src="./Improving Point-Lookup Using Data Block Hash Index _ RocksDB_files/block-format-binary-seek.png" alt=""></p>
+
+<p>We implemented a hash map at the end of the block to index the key to reduce the CPU overhead of the binary search. The hash index is just an array of pointers pointing into the binary seek index.</p>
+
+<p><img src="./Improving Point-Lookup Using Data Block Hash Index _ RocksDB_files/block-format-hash-index.png" alt=""></p>
+
+<p>Each array element is considered as a hash bucket when storing the location of a key (or more precisely, the restart index of the restart interval where the key resides). When multiple keys happen to hash into the same bucket (hash collision), we just mark the bucket as “collision”. So that when later querying on that key, the hash table lookup knows that there was a hash collision happened so it can fall back to the traditional binary search to find the location of the key.</p>
+
+<p>We define hash table utilization ratio as the #keys/#buckets. If a utilization ratio is 0.5 and there are 100 buckets, 50 keys are stored in the bucket. The less the util ratio, the less hash collision, and the less chance for a point lookup falls back to binary seek (fall back ratio) due to the collision. So a small util ratio has more benefit to reduce the CPU time but introduces more space overhead.</p>
+
+<p>Space overhead depends on the util ratio. Each bucket is a <code class="highlighter-rouge">uint8_t</code>  (i.e. one byte). For a util ratio of 1, the space overhead is 1Byte per key, the fall back ratio observed is ~52%.</p>
+
+<p><img src="./Improving Point-Lookup Using Data Block Hash Index _ RocksDB_files/hash-index-data-structure.png" alt=""></p>
+
+<h3 id="things-that-need-attention">Things that Need Attention</h3>
+
+<p><strong>Customized Comparator</strong></p>
+
+<p>Hash index will hash different keys (keys with different content, or byte sequence) into different hash values. This assumes the comparator will not treat different keys as equal if they have different content.</p>
+
+<p>The default bytewise comparator orders the keys in alphabetical order and works well with hash index, as different keys will never be regarded as equal. However, some specially crafted comparators will do. For example, say, a <code class="highlighter-rouge">StringToIntComparator</code> can convert a string into an integer, and use the integer to perform the comparison. Key string “16” and “0x10” is equal to each other as seen by this <code class="highlighter-rouge">StringToIntComparator</code>, but they probably hash to different value. Later queries to one form of the key will not be able to find the existing key been stored in the other format.</p>
+
+<p>We add a new function member to the comparator interface:</p>
+
+<div class="highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>virtual bool CanKeysWithDifferentByteContentsBeEqual() const { return true; }
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Every comparator implementation should override this function and specify the behavior of the comparator. If a comparator can regard different keys equal, the function returns true, and as a result the hash index feature will not be enabled, and vice versa.</p>
+
+<p>NOTE: to use the hash index feature, one should 1) have a comparator that can never treat different keys as equal; and 2) override the <code class="highlighter-rouge">CanKeysWithDifferentByteContentsBeEqual()</code> function to return <code class="highlighter-rouge">false</code>, so the hash index can be enabled.</p>
+
+<p><strong>Util Ratio’s Impact on Data Block Cache</strong></p>
+
+<p>Adding the hash index to the end of the data block essentially takes up the data block cache space, making the effective data block cache size smaller and increasing the data block cache miss ratio. Therefore, a very small util ratio will result in a large data block cache miss ratio, and the extra I/O may drag down the throughput gain achieved by the hash index lookup. Besides, when compression is enabled, cache miss also incurs data block decompression, which is CPU-consuming. Therefore the CPU may even increase if using a too small util ratio. The best util ratio depends on workloads, cache to data ratio, disk bandwidth/latency etc. In our experiment, we found util ratio = 0.5 ~ 1 is a good range to explore that brings both CPU and throughput gains.</p>
+
+<h3 id="limitations">Limitations</h3>
+
+<p>As we use <code class="highlighter-rouge">uint8_t</code> to store binary seek index, i.e. restart interval index, the total number of restart intervals cannot be more than 253 (we reserved  255 and 254 as special flags). For blocks having a larger number of restart intervals, the hash index will not be created and the point lookup will be done by traditional binary seek.</p>
+
+<p>Data block hash index only supports point lookup. We do not support range lookup. Range lookup request will fall back to BinarySeek.</p>
+
+<p>RocksDB supports many types of records, such as <code class="highlighter-rouge">Put</code>, <code class="highlighter-rouge">Delete</code>, <code class="highlighter-rouge">Merge</code>, etc (visit <a href="https://github.com/facebook/rocksdb/wiki/rocksdb-basics">here</a> for more information). Currently we only support <code class="highlighter-rouge">Put</code> and <code class="highlighter-rouge">Delete</code>, but not <code class="highlighter-rouge">Merge</code>. Internally we have a limited set of supported record types:</p>
+
+<div class="highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4</pre></td><td class="code"><pre>kPutRecord,          &lt;=== supported
+kDeleteRecord,       &lt;=== supported
+kSingleDeleteRecord, &lt;=== supported
+kTypeBlobIndex,      &lt;=== supported
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>For records not supported, the searching process will fall back to the traditional binary seek.</p>
+
+<h3 id="evaluation">Evaluation</h3>
+<p>To evaluate the CPU util reduction and isolate other factors such as disk I/O and block decompression, we first evaluate the hash idnex in a purely cached workload. We observe that the CPU utilization of one of the main functions in the point lookup code path, DataBlockIter::Seek(), is reduced by 21.8% and the overall throughput is increased by 10% at an overhead of 4.6% more space.</p>
+
+<p>However, general worload is not always purely cached. So we also evaluate the performance under different cache space pressure. In the following test, we use <code class="highlighter-rouge">db_bench</code> with RocksDB deployed on SSDs. The total DB size is 5~6GB, and it is about 14GB if decompressed. Different block cache sizes are used, ranging from 14GB down to 2GB, with an increasing cache miss ratio.</p>
+
+<p>Orange bars are representing our hash index performance. We use a hash util ratio of 1.0 in this test. Block size are set to 16KiB with the restart interval as 16.</p>
+
+<p><img src="./Improving Point-Lookup Using Data Block Hash Index _ RocksDB_files/perf-throughput.png" alt="">
+<img src="./Improving Point-Lookup Using Data Block Hash Index _ RocksDB_files/perf-cache-miss.png" alt=""></p>
+
+<p>We can see that if cache size is greater than 8GB, hash index can bring throughput gain. Cache size greater than 8GB can be translated to a cache miss ratio smaller than 40%. So if the workload has a cache miss ratio smaller than 40%, hash index is able to increase the throughput.</p>
+
+<p>Besides, shadow testing with Facebook production traffic shows good CPU improvements too.</p>
+
+
+  
+  
+    <div class="fb-like pluginWrapper likeButtonWrapper fb_iframe_widget" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;app_id=1615782811974223&amp;container_width=1120&amp;href=http%3A%2F%2Flocalhost%3A4000%2Fblog%2F2018%2F08%2F23%2Fdata-block-hash-index.html&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;share=true&amp;show_faces=true"><span style="vertical-align: bottom; width: 106px; height: 20px;"><iframe name="f10937770784688" width="1000px" height="1000px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" title="fb:like Facebook Social Plugin" src="./Improving Point-Lookup Using Data Block Hash Index _ RocksDB_files/like.html" style="border: none; visibility: visible; width: 106px; height: 20px;" class=""></iframe></span></div>
+<script>
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '1615782811974223',
+    xfbml      : true,
+    version    : 'v2.3'
+  });
+  };
+
+  (function(d, s, id){
+   var js, fjs = d.getElementsByTagName(s)[0];
+   if (d.getElementById(id)) {return;}
+   js = d.createElement(s); js.id = id;
+   js.src = "//connect.facebook.net/en_US/sdk.js";
+   fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+  
+  </article>
+</div>
+
+</div>
+  </div>
+</div>
+
+
+      </div>
+      <div class="footerContainer">
+  <div id="footer_wrap" class="wrapper footerWrapper">
+    <div class="footerBlocks">
+      <div id="fb_oss" class="footerSection fbOpenSourceFooter">
+          <svg class="facebookOSSLogoSvg" viewBox="0 0 1133.9 1133.9" x="0px" y="0px">
+            <g>
+              <path class="logoRing outerRing" d="M 498.3 3.7 c 153.6 88.9 307.3 177.7 461.1 266.2 c 7.6 4.4 10.3 9.1 10.3 17.8 c -0.3 179.1 -0.2 358.3 0 537.4 c 0 8.1 -2.4 12.8 -9.7 17.1 c -154.5 88.9 -308.8 178.1 -462.9 267.5 c -9 5.2 -15.5 5.3 -24.6 0.1 c -153.9 -89.2 -307.9 -178 -462.1 -266.8 C 3 838.8 0 833.9 0 825.1 c 0.3 -179.1 0.2 -358.3 0 -537.4 c 0 -8.6 2.6 -13.6 10.2 -18 C 164.4 180.9 318.4 92 472.4 3 C 477 -1.5 494.3 -0.7 498.3 3.7 Z M 48.8 555.3 c 0 79.9 0.2 159.9 -0.2 239.8 c -0.1 10 3 15.6 11.7 20.6 c 137.2 78.8 274.2 157.8 411 237.3 c 9.9 5.7 17 5.7 26.8 0.1 c 137.5 -79.8 275.2 -159.2 412.9 -238.5 c 7.4 -4.3 10.5 -8.9 10.5 -17.8 c -0.3 -160.2 -0.3 -320.5 0 -480.7 c 0 -8.8 -2.8 -13.6 -10.3 -18 C 772.1 218 633.1 137.8 494.2 57.4 c -6.5 -3.8 -11.5 -4.5 -18.5 -0.5 C 336.8 137.4 197.9 217.7 58.8 297.7 c -7.7 4.4 -10.2 9.2 -10.2 17.9 C 48.9 395.5 48.8 475.4 48.8 555.3 Z"></path>
+              <path class="logoRing middleRing" d="M 184.4 555.9 c 0 -33.3 -1 -66.7 0.3 -100 c 1.9 -48 24.1 -86 64.7 -110.9 c 54.8 -33.6 110.7 -65.5 167 -96.6 c 45.7 -25.2 92.9 -24.7 138.6 1 c 54.4 30.6 108.7 61.5 162.2 93.7 c 44 26.5 67.3 66.8 68 118.4 c 0.9 63.2 0.9 126.5 0 189.7 c -0.7 50.6 -23.4 90.7 -66.6 116.9 c -55 33.4 -110.8 65.4 -167.1 96.5 c -43.4 24 -89 24.2 -132.3 0.5 c -57.5 -31.3 -114.2 -64 -170 -98.3 c -41 -25.1 -62.9 -63.7 -64.5 -112.2 C 183.5 621.9 184.3 588.9 184.4 555.9 Z M 232.9 556.3 c 0 29.5 0.5 59.1 -0.1 88.6 c -0.8 39.2 16.9 67.1 50.2 86.2 c 51.2 29.4 102.2 59.2 153.4 88.4 c 31.4 17.9 63.6 18.3 95 0.6 c 53.7 -30.3 107.1 -61.2 160.3 -92.5 c 29.7 -17.5 45 -44.5 45.3 -78.8 c 0.6 -61.7 0.5 -123.5 0 -185.2 c -0.3 -34.4 -15.3 -61.5 -44.9 -79 C 637.7 352.6 583 320.8 527.9 290 c -27.5 -15.4 -57.2 -16.1 -84.7 -0.7 c -56.9 31.6 -113.4 64 -169.1 97.6 c -26.4 15.9 -40.7 41.3 -41.1 72.9 C 232.6 491.9 232.9 524.1 232.9 556.3 Z"></path>
+              <path class="logoRing innerRing" d="M 484.9 424.4 c 69.8 -2.8 133.2 57.8 132.6 132 C 617 630 558.5 688.7 484.9 689.1 c -75.1 0.4 -132.6 -63.6 -132.7 -132.7 C 352.1 485 413.4 421.5 484.9 424.4 Z M 401.3 556.7 c -3.4 37.2 30.5 83.6 83 84.1 c 46.6 0.4 84.8 -37.6 84.9 -84 c 0.1 -46.6 -37.2 -84.4 -84.2 -84.6 C 432.2 472.1 397.9 518.3 401.3 556.7 Z"></path>
+            </g>
+          </svg>
+        <h2>Facebook Open Source</h2>
+      </div>
+      <div class="footerSection">
+        <a class="footerLink" href="https://code.facebook.com/projects/" target="_blank">Open Source Projects</a>
+        <a class="footerLink" href="https://github.com/facebook/" target="_blank">GitHub</a>
+        <a class="footerLink" href="https://twitter.com/fbOpenSource" target="_blank">Twitter</a>
+      </div>
+      <div class="footerSection rightAlign">
+        <a class="footerLink" href="https://github.com/facebook/rocksdb" target="_blank">Contribute to this project on GitHub</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49459723-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+    </div>
+  
+
+<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Improving Point-Lookup Using Data Block Hash Index _ RocksDB_files/QX17B8fU-Vm.html" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div></body></html>
