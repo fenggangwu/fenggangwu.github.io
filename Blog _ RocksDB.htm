@@ -1,0 +1,2863 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)http://localhost:4000/blog/ -->
+<html class="gr__localhost"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:url" content="http://localhost:4000/blog/">
+  <meta property="og:site_name" content="RocksDB">
+  <meta property="og:title" content="Blog">
+  <meta property="og:image" content="http://localhost:4000/static/og_image.png">
+  <meta property="og:description" content="RocksDB is an embeddable persistent key-value store for fast storage.
+">
+
+  <link rel="stylesheet" href="./Blog _ RocksDB_files/main.css" media="screen">
+  <link rel="icon" href="http://localhost:4000/static/favicon.png" type="image/x-icon">
+  
+
+  <title>Blog | RocksDB</title>
+  <meta name="description" content="RocksDB is an embeddable persistent key-value store for fast storage.
+">
+
+  <link rel="canonical" href="http://localhost:4000/blog/">
+  <link rel="alternate" type="application/rss+xml" title="RocksDB" href="http://localhost:4000/feed.xml">
+</head>
+
+  <body class="docsNavVisible" data-gr-c-s-loaded="true">
+    <div id="fixed_header" class="fixedHeaderContainer visible">
+  <div class="headerWrapper wrapper">
+    <header>
+      <a href="http://localhost:4000/">
+        <img src="./Blog _ RocksDB_files/logo.svg">
+        <h2>RocksDB</h2>
+      </a>
+
+      <div class="navigationWrapper navigationFull" id="flat_nav">
+        <nav class="navigation">
+          <ul>
+            
+            <li class="navItem">
+              
+                
+                <a href="http://localhost:4000/docs/">Docs</a>
+              
+            </li>
+            
+            <li class="navItem">
+              
+                <a href="https://github.com/facebook/rocksdb/">GitHub</a>
+              
+            </li>
+            
+            <li class="navItem">
+              
+                <a href="https://github.com/facebook/rocksdb/tree/master/include/rocksdb">API (C++)</a>
+              
+            </li>
+            
+            <li class="navItem">
+              
+                <a href="https://github.com/facebook/rocksdb/tree/master/java/src/main/java/org/rocksdb">API (Java)</a>
+              
+            </li>
+            
+            <li class="navItem">
+              
+                
+                <a href="http://localhost:4000/support.html">Support</a>
+              
+            </li>
+            
+            <li class="navItem navItemActive">
+              
+                
+                <a href="http://localhost:4000/blog/">Blog</a>
+              
+            </li>
+            
+            <li class="navItem">
+              
+                <a href="https://www.facebook.com/groups/rocksdb.dev/">Facebook</a>
+              
+            </li>
+            
+            
+          </ul>
+        </nav>
+      </div>
+      <div class="navigationWrapper navigationSlider" id="navigation_wrap">
+        <div id="header_nav">
+  <div class="navSlideout">
+    <i class="menuExpand" id="header_nav_expander"><span></span><span></span><span></span></i>
+  </div>
+  <nav class="slidingNav">
+    <ul>
+      
+      <li class="navItem">
+        <a href="http://localhost:4000/docs/">Docs</a>
+      </li>
+      
+      <li class="navItem">
+        <a href="https://github.com/facebook/rocksdb/" target="_blank">GitHub</a>
+      </li>
+      
+      <li class="navItem">
+        <a href="https://github.com/facebook/rocksdb/tree/master/include/rocksdb" target="_blank">API (C++)</a>
+      </li>
+      
+      <li class="navItem">
+        <a href="https://github.com/facebook/rocksdb/tree/master/java/src/main/java/org/rocksdb" target="_blank">API (Java)</a>
+      </li>
+      
+      <li class="navItem">
+        <a href="http://localhost:4000/support.html">Support</a>
+      </li>
+      
+      <li class="navItem">
+        <a href="http://localhost:4000/blog/">Blog</a>
+      </li>
+      
+      <li class="navItem">
+        <a href="https://www.facebook.com/groups/rocksdb.dev/" target="_blank">Facebook</a>
+      </li>
+      
+      
+    </ul>
+  </nav>
+</div>
+<script async="" src="./Blog _ RocksDB_files/analytics.js"></script><script>
+  var event = document.createEvent('Event');
+  event.initEvent('slide', true, true);
+  document.addEventListener('slide', function (e) {
+    document.body.classList.toggle('sliderActive');
+  }, false);
+  var headerNav = document.getElementById('header_nav');
+  var headerNavExpander = document.getElementById('header_nav_expander');
+  headerNavExpander.addEventListener('click', function(e) {
+    headerNav.classList.toggle('navSlideoutActive');
+    document.dispatchEvent(event);
+  }, false);
+</script>
+      </div>
+    </header>
+  </div>
+</div>
+
+    <div class="navPusher">
+      <div class="docMainWrapper wrapper">
+      <div class="docsNavContainer">
+  <nav class="toc" id="doc_nav">
+    <div class="toggleNav" id="collection_nav">
+      <section class="navWrapper wrapper">
+        <div class="navBreadcrumb wrapper">
+          <div class="navToggle" id="collection_nav_toggler">
+            <i></i>
+          </div>
+          <h2>
+            <a href="http://localhost:4000/blog/">Blog</a>
+            
+          </h2>
+        </div>
+        <div class="navGroups">
+          
+            
+            
+            <div class="navGroup navGroupActive navGroupCurrent">
+  <h3><i>+</i><span>All Posts</span></h3>
+  <ul>
+    
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2018/08/23/data-block-hash-index.html">Improving Point-Lookup Performance Using Data Block Hash Index</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2018/08/01/rocksdb-tuning-advisor.html">Rocksdb Tuning Advisor</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2018/02/05/rocksdb-5-10-2-released.html">RocksDB 5.10.2 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/12/19/write-prepared-txn.html">WritePrepared Transactions</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/12/18/17-auto-tuned-rate-limiter.html">Auto-tuned Rate Limiter</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/09/28/rocksdb-5-8-released.html">RocksDB 5.8 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/08/25/flushwal.html">FlushWAL; less fwrite, faster writes</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/08/24/pinnableslice.html">PinnableSlice; less memcpy with point lookups</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/07/25/rocksdb-5-6-1-released.html">RocksDB 5.6.1 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/06/29/rocksdb-5-5-1-released.html">RocksDB 5.5.1 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/06/26/17-level-based-changes.html">Level-based Compaction Changes</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/05/26/rocksdb-5-4-5-released.html">RocksDB 5.4.5 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/05/14/core-local-stats.html">Core-local Statistics</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/05/12/partitioned-index-filter.html">Partitioned Index/Filters</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/03/02/rocksdb-5-2-1-released.html">RocksDB 5.2.1 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/02/17/bulkoad-ingest-sst-file.html">Bulkloading by ingesting external SST files</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/02/07/rocksdb-5-1-2-released.html">RocksDB 5.1.2 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2017/01/06/rocksdb-5-0-1-released.html">RocksDB 5.0.1 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2016/09/28/rocksdb-4-11-2-released.html">RocksDB 4.11.2 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2016/07/26/rocksdb-4-8-released.html">RocksDB 4.8 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2016/04/26/rocksdb-4-5-1-released.html">RocksDB 4.5.1 Released!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2016/03/07/rocksdb-options-file.html">RocksDB Options File</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2016/02/25/rocksdb-ama.html">RocksDB AMA</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2016/02/24/rocksdb-4-2-release.html">RocksDB 4.2 Release!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2016/01/29/compaction_pri.html">Option of Compaction Priority</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/11/16/analysis-file-read-latency-by-level.html">Analysis File Read Latency by Level</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/11/10/use-checkpoints-for-efficient-snapshots.html">Use Checkpoints for Efficient Snapshots</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/10/27/getthreadlist.html">GetThreadList</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/07/23/dynamic-level.html">Dynamic Level Size for Level-Based Compaction</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/07/22/rocksdb-is-now-available-in-windows-platform.html">RocksDB is now available in Windows Platform</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/07/17/spatial-indexing-in-rocksdb.html">Spatial indexing in RocksDB</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/07/15/rocksdb-2015-h2-roadmap.html">RocksDB 2015 H2 roadmap</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/06/12/rocksdb-in-osquery.html">RocksDB in osquery</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/04/22/integrating-rocksdb-with-mongodb-2.html">Integrating RocksDB with MongoDB</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/02/27/write-batch-with-index.html">WriteBatchWithIndex: Utility for Implementing Read-Your-Own-Writes</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/02/24/reading-rocksdb-options-from-a-file.html">Reading RocksDB options from a file</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2015/01/16/migrating-from-leveldb-to-rocksdb-2.html">Migrating from LevelDB to RocksDB</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/09/15/rocksdb-3-5-release.html">RocksDB 3.5 Release!</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/09/12/new-bloom-filter-format.html">New Bloom Filter Format</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/09/12/cuckoo.html">Cuckoo Hashing Table Format</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/07/29/rocksdb-3-3-release.html">RocksDB 3.3 Release</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/06/27/rocksdb-3-2-release.html">RocksDB 3.2 release</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/06/27/avoid-expensive-locks-in-get.html">Avoid Expensive Locks in Get()</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/06/23/plaintable-a-new-file-format.html">PlainTable — A New File Format</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/05/22/rocksdb-3-1-release.html">RocksDB 3.1 release</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/05/19/rocksdb-3-0-release.html">RocksDB 3.0 release</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/05/14/lock.html">Reducing Lock Contention in RocksDB</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/04/21/indexing-sst-files-for-better-lookup-performance.html">Indexing SST Files for Better Lookup Performance</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/04/07/rocksdb-2-8-release.html">RocksDB 2.8 release</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/04/02/the-1st-rocksdb-local-meetup-held-on-march-27-2014.html">The 1st RocksDB Local Meetup Held on March 27, 2014</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/03/27/how-to-persist-in-memory-rocksdb-database.html">How to persist in-memory RocksDB database?</a></li>
+
+      
+      <li class="navListItem"><a class="navItem" href="http://localhost:4000/blog/2014/03/27/how-to-backup-rocksdb.html">How to backup RocksDB?</a></li>
+
+      
+    
+  </ul>
+</div>
+          
+        </div>
+      </section>
+    </div>
+  </nav>
+</div>
+<script>
+  var docsevent = document.createEvent('Event');
+  docsevent.initEvent('docs_slide', true, true);
+  document.addEventListener('docs_slide', function (e) {
+    document.body.classList.toggle('docsSliderActive');
+  }, false);
+
+  var collectionNav = document.getElementById('collection_nav');
+  var collectionNavToggler =
+    document.getElementById('collection_nav_toggler');
+  collectionNavToggler.addEventListener('click', function(e) {
+    collectionNav.classList.toggle('toggleNavActive');
+    document.dispatchEvent(docsevent);
+  });
+
+  var groups = document.getElementsByClassName('navGroup');
+  for(var i = 0; i < groups.length; i++) {
+    var thisGroup = groups[i];
+    thisGroup.onclick = function() {
+      for(var j = 0; j < groups.length; j++) {
+        var group = groups[j];
+        group.classList.remove('navGroupActive');
+      }
+      this.classList.add('navGroupActive');
+    }
+  }
+</script>
+
+      <div class="mainContainer blogContainer postContainer">
+  <div id="main_wrap" class="wrapper mainWrapper">
+    <div class="posts">
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Fenggang Wu</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2018/08/23/data-block-hash-index.html">Improving Point-Lookup Performance Using Data Block Hash Index</a></h1>
+    <p class="post-meta">Posted August 23, 2018</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>RocksDB does a binary search when performing point lookup the keys in data blocks. However, in order to find the right location where the key may reside, multiple key parsing and comparison are needed. Each binary search branching triggers CPU cache miss, causing much CPU utilization. We have seen that this binary search takes up considerable CPU in production use-cases.</p>
+
+<p>A hash index is designed and implemented in RocksDB data blocks to improve the CPU efficiency of point lookup. Benchmarks with <code class="highlighter-rouge">db_bench</code>  show the CPU utilization of one of the main functions in the point lookup code path, <code class="highlighter-rouge">DataBlockIter::Seek()</code>, is reduced by 21.8%, and the overall RocksDB throughput is increased by 10% under purely cached workloads, at an overhead of 4.6% more space.</p>
+
+<h3 id="how-to-use-it">How to use it</h3>
+<p>Two new options are added as part of this feature: <code class="highlighter-rouge">BlockBasedTableOptions::data_block_index_type</code> and <code class="highlighter-rouge">BlockBasedTableOptions::data_block_hash_table_util_ratio</code>.</p>
+
+<p>The hash index is disabled by default unless <code class="highlighter-rouge">BlockBasedTableOptions::data_block_index_type</code> is set to <code class="highlighter-rouge">data_block_index_type = kDataBlockBinaryAndHash</code>. The hash table utilization ratio is adjustable using <code class="highlighter-rouge">BlockBasedTableOptions::data_block_hash_table_util_ratio</code>, which is valid only if <code class="highlighter-rouge">data_block_index_type = kDataBlockBinaryAndHash</code>.</p>
+
+<div class="highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14</pre></td><td class="code"><pre>// the definitions can be found in include/rocksdb/table.h
+
+// The index type that will be used for the data block.
+enum DataBlockIndexType : char {
+  kDataBlockBinarySearch = 0,  // traditional block type
+  kDataBlockBinaryAndHash = 1, // additional hash index
+};
+
+DataBlockIndexType data_block_index_type = kDataBlockBinarySearch;
+
+// #entries/#buckets. It is valid only when data_block_hash_index_type is
+// kDataBlockBinaryAndHash.
+double data_block_hash_table_util_ratio = 0.75;
+
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<h3 id="data-block-hash-index-design">Data Block Hash Index Design</h3>
+
+<p>Current data block format groups adjacent keys together as a restart interval. One block consists of multiple restart intervals. The byte offset of the beginning of each restart interval, i.e. a restart point, is stored in an array called restart interval index or binary seek index. RocksDB does a binary search when performing point lookup for keys in data blocks to find the right restart interval the key may reside. We will use binary seek and binary search interchangeably in this post.</p>
+
+<p><img src="./Blog _ RocksDB_files/block-format-binary-seek.png" alt=""></p>
+
+<p>We implemented a hash map at the end of the block to index the key to reduce the CPU overhead of the binary search. The hash index is just an array of pointers pointing into the binary seek index.</p>
+
+<p><img src="./Blog _ RocksDB_files/block-format-hash-index.png" alt=""></p>
+
+<p>Each array element is considered as a hash bucket when storing the location of a key (or more precisely, the restart index of the restart interval where the key resides). When multiple keys happen to hash into the same bucket (hash collision), we just mark the bucket as “collision”. So that when later querying on that key, the hash table lookup knows that there was a hash collision happened so it can fall back to the traditional binary search to find the location of the key.</p>
+
+<p>We define hash table utilization ratio as the #keys/#buckets. If a utilization ratio is 0.5 and there are 100 buckets, 50 keys are stored in the bucket. The less the util ratio, the less hash collision, and the less chance for a point lookup falls back to binary seek (fall back ratio) due to the collision. So a small util ratio has more benefit to reduce the CPU time but introduces more space overhead.</p>
+
+<p>Space overhead depends on the util ratio. Each bucket is a <code class="highlighter-rouge">uint8_t</code>  (i.e. one byte). For a util ratio of 1, the space overhead is 1Byte per key, the fall back ratio observed is ~52%.</p>
+
+<p><img src="./Blog _ RocksDB_files/hash-index-data-structure.png" alt=""></p>
+
+<h3 id="things-that-need-attention">Things that Need Attention</h3>
+
+<p><strong>Customized Comparator</strong></p>
+
+<p>Hash index will hash different keys (keys with different content, or byte sequence) into different hash values. This assumes the comparator will not treat different keys as equal if they have different content.</p>
+
+<p>The default bytewise comparator orders the keys in alphabetical order and works well with hash index, as different keys will never be regarded as equal. However, some specially crafted comparators will do. For example, say, a <code class="highlighter-rouge">StringToIntComparator</code> can convert a string into an integer, and use the integer to perform the comparison. Key string “16” and “0x10” is equal to each other as seen by this <code class="highlighter-rouge">StringToIntComparator</code>, but they probably hash to different value. Later queries to one form of the key will not be able to find the existing key been stored in the other format.</p>
+
+<p>We add a new function member to the comparator interface:</p>
+
+<div class="highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>virtual bool CanKeysWithDifferentByteContentsBeEqual() const { return true; }
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Every comparator implementation should override this function and specify the behavior of the comparator. If a comparator can regard different keys equal, the function returns true, and as a result the hash index feature will not be enabled, and vice versa.</p>
+
+<p>NOTE: to use the hash index feature, one should 1) have a comparator that can never treat different keys as equal; and 2) override the <code class="highlighter-rouge">CanKeysWithDifferentByteContentsBeEqual()</code> function to return <code class="highlighter-rouge">false</code>, so the hash index can be enabled.</p>
+
+<p><strong>Util Ratio’s Impact on Data Block Cache</strong></p>
+
+<p>Adding the hash index to the end of the data block essentially takes up the data block cache space, making the effective data block cache size smaller and increasing the data block cache miss ratio. Therefore, a very small util ratio will result in a large data block cache miss ratio, and the extra I/O may drag down the throughput gain achieved by the hash index lookup. Besides, when compression is enabled, cache miss also incurs data block decompression, which is CPU-consuming. Therefore the CPU may even increase if using a too small util ratio. The best util ratio depends on workloads, cache to data ratio, disk bandwidth/latency etc. In our experiment, we found util ratio = 0.5 ~ 1 is a good range to explore that brings both CPU and throughput gains.</p>
+
+<h3 id="limitations">Limitations</h3>
+
+<p>As we use <code class="highlighter-rouge">uint8_t</code> to store binary seek index, i.e. restart interval index, the total number of restart intervals cannot be more than 253 (we reserved  255 and 254 as special flags). For blocks having a larger number of restart intervals, the hash index will not be created and the point lookup will be done by traditional binary seek.</p>
+
+<p>Data block hash index only supports point lookup. We do not support range lookup. Range lookup request will fall back to BinarySeek.</p>
+
+<p>RocksDB supports many types of records, such as <code class="highlighter-rouge">Put</code>, <code class="highlighter-rouge">Delete</code>, <code class="highlighter-rouge">Merge</code>, etc (visit <a href="https://github.com/facebook/rocksdb/wiki/rocksdb-basics">here</a> for more information). Currently we only support <code class="highlighter-rouge">Put</code> and <code class="highlighter-rouge">Delete</code>, but not <code class="highlighter-rouge">Merge</code>. Internally we have a limited set of supported record types:</p>
+
+<div class="highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4</pre></td><td class="code"><pre>kPutRecord,          &lt;=== supported
+kDeleteRecord,       &lt;=== supported
+kSingleDeleteRecord, &lt;=== supported
+kTypeBlobIndex,      &lt;=== supported
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>For records not supported, the searching process will fall back to the traditional binary seek.</p>
+
+
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2018/08/01/rocksdb-tuning-advisor.html">Rocksdb Tuning Advisor</a></h1>
+    <p class="post-meta">Posted August 01, 2018</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>The performance of Rocksdb is contingent on its tuning. However, because
+of the complexity of its underlying technology and a large number of
+configurable parameters, a good configuration is sometimes hard to obtain. The aim of
+the python command-line tool, Rocksdb Advisor, is to automate the process of
+suggesting improvements in the configuration based on advice from Rocksdb
+experts.</p>
+
+<h3 id="overview">Overview</h3>
+
+<p>Experts share their wisdom as rules comprising of conditions and suggestions in the INI format (refer
+<a href="https://github.com/facebook/rocksdb/blob/master/tools/advisor/advisor/rules.ini">rules.ini</a>).
+Users provide the Rocksdb configuration that they want to improve upon (as the
+familiar Rocksdb OPTIONS file —
+<a href="https://github.com/facebook/rocksdb/blob/master/examples/rocksdb_option_file_example.ini">example</a>)
+and the path of the file which contains Rocksdb logs and statistics.
+The <a href="https://github.com/facebook/rocksdb/blob/master/tools/advisor/advisor/rule_parser_example.py">Advisor</a>
+creates appropriate DataSource objects (for Rocksdb
+<a href="https://github.com/facebook/rocksdb/blob/master/tools/advisor/advisor/db_log_parser.py">logs</a>,
+<a href="https://github.com/facebook/rocksdb/blob/master/tools/advisor/advisor/db_options_parser.py">options</a>,
+<a href="https://github.com/facebook/rocksdb/blob/master/tools/advisor/advisor/db_stats_fetcher.py">statistics</a> etc.)
+and provides them to the <a href="https://github.com/facebook/rocksdb/blob/master/tools/advisor/advisor/rule_parser.py">Rules Engine</a>.
+The Rules uses rules from experts to parse data-sources and trigger appropriate rules.
+The Advisor’s output gives information about which rules were triggered,
+why they were triggered and what each of them suggests. Each suggestion
+provided by a triggered rule advises some action on a Rocksdb
+configuration option, for example, increase CFOptions.write_buffer_size,
+set bloom_bits to 2 etc.</p>
+
+<h3 id="usage">Usage</h3>
+
+<p>An example command to run the tool:</p>
+
+<div class="language-shell highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2</pre></td><td class="code"><pre><span class="nb">cd </span>rocksdb/tools/advisor
+python3 -m advisor.rule_parser_example --rules_spec<span class="o">=</span>advisor/rules.ini --rocksdb_options<span class="o">=</span><span class="nb">test</span>/input_files/OPTIONS-000005 --log_files_path_prefix<span class="o">=</span><span class="nb">test</span>/input_files/LOG-0 --stats_dump_period_sec<span class="o">=</span>20
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Sample output where a Rocksdb log-based rule has been triggered :</p>
+
+<div class="language-shell highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6</pre></td><td class="code"><pre>Rule: stall-too-many-memtables
+LogCondition: stall-too-many-memtables regex: Stopping writes because we have <span class="se">\d</span>+ immutable memtables <span class="se">\(</span>waiting <span class="k">for </span>flush<span class="se">\)</span>, max_write_buffer_number is <span class="nb">set </span>to <span class="se">\d</span>+
+Suggestion: inc-bg-flush option : DBOptions.max_background_flushes action : increase suggested_values : <span class="o">[</span><span class="s1">'2'</span><span class="o">]</span>
+Suggestion: inc-write-buffer option : CFOptions.max_write_buffer_number action : increase
+scope: col_fam:
+<span class="o">{</span><span class="s1">'default'</span><span class="o">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<h3 id="read-more">Read more</h3>
+
+<p>For more information, refer to <a href="https://github.com/facebook/rocksdb/tree/master/tools/advisor/README.md">advisor</a>.</p>
+
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2018/02/05/rocksdb-5-10-2-released.html">RocksDB 5.10.2 Released!</a></h1>
+    <p class="post-meta">Posted February 05, 2018</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <h3 id="public-api-change">Public API Change</h3>
+<ul>
+  <li>When running <code class="highlighter-rouge">make</code> with environment variable <code class="highlighter-rouge">USE_SSE</code> set and <code class="highlighter-rouge">PORTABLE</code> unset, will use all machine features available locally. Previously this combination only compiled SSE-related features.</li>
+</ul>
+
+<h3 id="new-features">New Features</h3>
+<ul>
+  <li>CRC32C is now using the 3-way pipelined SSE algorithm <code class="highlighter-rouge">crc32c_3way</code> on supported platforms to improve performance. The system will choose to use this algorithm on supported platforms automatically whenever possible. If PCLMULQDQ is not supported it will fall back to the old Fast_CRC32 algorithm.</li>
+  <li>Provide lifetime hints when writing files on Linux. This reduces hardware write-amp on storage devices supporting multiple streams.</li>
+  <li>Add a DB stat, <code class="highlighter-rouge">NUMBER_ITER_SKIP</code>, which returns how many internal keys were skipped during iterations (e.g., due to being tombstones or duplicate versions of a key).</li>
+  <li>Add PerfContext counters, <code class="highlighter-rouge">key_lock_wait_count</code> and <code class="highlighter-rouge">key_lock_wait_time</code>, which measure the number of times transactions wait on key locks and total amount of time waiting.</li>
+</ul>
+
+<h3 id="bug-fixes">Bug Fixes</h3>
+<ul>
+  <li>Fix IOError on WAL write doesn’t propagate to write group follower</li>
+  <li>Make iterator invalid on merge error.</li>
+  <li>Fix performance issue in <code class="highlighter-rouge">IngestExternalFile()</code> affecting databases with large number of SST files.</li>
+  <li>Fix possible corruption to LSM structure when <code class="highlighter-rouge">DeleteFilesInRange()</code> deletes a subset of files spanned by a <code class="highlighter-rouge">DeleteRange()</code> marker.</li>
+  <li>Fix DB::Flush() keep waiting after flush finish under certain condition.</li>
+</ul>
+
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(1)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Maysam Yabandeh</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2017/12/19/write-prepared-txn.html">WritePrepared Transactions</a></h1>
+    <p class="post-meta">Posted December 19, 2017</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>RocksDB supports both optimistic and pessimistic concurrency controls. The pessimistic transactions make use of locks to provide isolation between the transactions. The default write policy in pessimistic transactions is <em>WriteCommitted</em>, which means that the data is written to the DB, i.e., the memtable, only after the transaction is committed. This policy simplified the implementation but came with some limitations in throughput, transaction size, and variety in supported isolation levels. In the below, we explain these in detail and present the other write policies, <em>WritePrepared</em> and <em>WriteUnprepared</em>. We then dive into the design of <em>WritePrepared</em> transactions.</p>
+
+<blockquote>
+  <p><em>WritePrepared</em> are to be announced as production-ready soon.</p>
+</blockquote>
+
+<h3 id="writecommitted-pros-and-cons">WriteCommitted, Pros and Cons</h3>
+
+<p>With <em>WriteCommitted</em> write policy, the data is written to the memtable only after the transaction commits. This greatly simplifies the read path as any data that is read by other transactions can be assumed to be committed. This write policy, however, implies that the writes are buffered in memory in the meanwhile. This makes memory a bottleneck for large transactions. The delay of the commit phase in 2PC (two-phase commit) also becomes noticeable since most of the work, i.e., writing to memtable, is done at the commit phase. When the commit of multiple transactions are done in a serial fashion, such as in 2PC implementation of MySQL, the lengthy commit latency becomes a major contributor to lower throughput. Moreover this write policy cannot provide weaker isolation levels, such as READ UNCOMMITTED, that could potentially provide higher throughput for some applications.</p>
+
+<h3 id="alternatives-writeprepared-and-writeunprepared">Alternatives: <em>WritePrepared</em> and <em>WriteUnprepared</em></h3>
+
+<p>To tackle the lengthy commit issue, we should do memtable writes at earlier phases of 2PC so that the commit phase become lightweight and fast. 2PC is composed of Write stage, where the transaction <code class="highlighter-rouge">::Put</code> is invoked, the prepare phase, where <code class="highlighter-rouge">::Prepare</code> is invoked (upon which the DB promises to commit the transaction if later is requested), and commit phase, where <code class="highlighter-rouge">::Commit</code> is invoked and the transaction writes become visible to all readers. To make the commit phase lightweight, the memtable write could be done at either <code class="highlighter-rouge">::Prepare</code> or <code class="highlighter-rouge">::Put</code> stages, resulting into <em>WritePrepared</em> and <em>WriteUnprepared</em> write policies respectively. The downside is that when another transaction is reading data, it would need a way to tell apart which data is committed, and if they are, whether they are committed before the transaction’s start, i.e., in the read snapshot of the transaction. <em>WritePrepared</em> would still have the issue of buffering the data, which makes the memory the bottleneck for large transactions. It however provides a good milestone for transitioning from <em>WriteCommitted</em> to <em>WriteUnprepared</em> write policy. Here we explain the design of <em>WritePrepared</em> policy. We will cover the changes that make the design to also supported <em>WriteUnprepared</em> in an upcoming post.</p>
+
+<h3 id="writeprepared-in-a-nutshell"><em>WritePrepared</em> in a nutshell</h3>
+
+<p>These are the primary design questions that needs to be addressed:
+1) How do we identify the key/values in the DB with transactions that wrote them?
+2) How do we figure if a key/value written by transaction Txn_w is in the read snapshot of the reading transaction Txn_r?
+3) How do we rollback the data written by aborted transactions?</p>
+
+<p>With <em>WritePrepared</em>, a transaction still buffers the writes in a write batch object in memory. When 2PC <code class="highlighter-rouge">::Prepare</code> is called, it writes the in-memory write batch to the WAL (write-ahead log) as well as to the memtable(s) (one memtable per column family); We reuse the existing notion of sequence numbers in RocksDB to tag all the key/values in the same write batch with the same sequence number, <code class="highlighter-rouge">prepare_seq</code>, which is also used as the identifier for the transaction. At commit time, it writes a commit marker to the WAL, whose sequence number, <code class="highlighter-rouge">commit_seq</code>, will be used as the commit timestamp of the transaction. Before releasing the commit sequence number to the readers, it stores a mapping from <code class="highlighter-rouge">prepare_seq</code> to <code class="highlighter-rouge">commit_seq</code> in an in-memory data structure that we call <em>CommitCache</em>. When a transaction reading values from the DB (tagged with <code class="highlighter-rouge">prepare_seq</code>) it makes use of the <em>CommitCache</em> to figure if <code class="highlighter-rouge">commit_seq</code> of the value is in its read snapshot. To rollback an aborted transaction, we apply the status before the transaction by making another write that cancels out the writes of the aborted transaction.</p>
+
+<p>The <em>CommitCache</em> is a lock-free data structure that caches the recent commit entries. Looking up the entries in the cache must be enough for almost all th transactions that commit in a timely manner. When evicting the older entries from the cache, it still maintains some other data structures to cover the corner cases for transactions that takes abnormally too long to finish. We will cover them in the design details below.</p>
+
+<h3 id="preliminary-results">Preliminary Results</h3>
+<p>The full experimental results are to be reported soon. Here we present the improvement in tps observed in some preliminary experiments with MyRocks:
+* sysbench update-noindex: 25%
+* sysbench read-write: 7.6%
+* linkbench: 3.7%</p>
+
+<p>Learn more <a href="https://github.com/facebook/rocksdb/wiki/WritePrepared-Transactions">here</a>.</p>
+
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(2)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Andrew Kryczka</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2017/12/18/17-auto-tuned-rate-limiter.html">Auto-tuned Rate Limiter</a></h1>
+    <p class="post-meta">Posted December 18, 2017</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <h3 id="introduction">Introduction</h3>
+
+<p>Our rate limiter has been hard to configure since users need to pick a value that is low enough to prevent background I/O spikes, which can impact user-visible read/write latencies. Meanwhile, picking too low a value can cause memtables and L0 files to pile up, eventually leading to writes stalling. Tuning the rate limiter has been especially difficult for users whose DB instances have different workloads, or have workloads that vary over time, or commonly both.</p>
+
+<p>To address this, in RocksDB 5.9 we released a dynamic rate limiter that adjusts itself over time according to demand for background I/O. It can be enabled simply by passing <code class="highlighter-rouge">auto_tuned=true</code> in the <code class="highlighter-rouge">NewGenericRateLimiter()</code> call. In this case <code class="highlighter-rouge">rate_bytes_per_sec</code> will indicate the upper-bound of the window within which a rate limit will be picked dynamically. The chosen rate limit will be much lower unless absolutely necessary, so setting this to the device’s maximum throughput is a reasonable choice on dedicated hosts.</p>
+
+<h3 id="algorithm">Algorithm</h3>
+
+<p>We use a simple multiplicative-increase, multiplicative-decrease algorithm. We measure demand for background I/O as the ratio of intervals where the rate limiter is drained. There are low and high watermarks for this ratio, which will trigger a change in rate limit when breached. The rate limit can move within a window bounded by the user-specified upper-bound, and a lower-bound that we derive internally. Users can expect this lower bound to be 1-2 orders of magnitude less than the provided upper-bound (so don’t provide INT64_MAX as your upper-bound), although it’s subject to change.</p>
+
+<h3 id="benchmark-results">Benchmark Results</h3>
+
+<p>Data is ingested at 10MB/s and the rate limiter was created with 1000MB/s as its upper bound. The dynamically chosen rate limit hovers around 125MB/s. The other clustering of points at 50MB/s is due to number of compaction threads being reduced to one when there’s no compaction pressure.</p>
+
+<p><img src="./Blog _ RocksDB_files/write-KBps-series.png" alt=""></p>
+
+<p><img src="./Blog _ RocksDB_files/auto-tuned-write-KBps-series.png" alt=""></p>
+
+<p>The following graph summarizes the above two time series graphs in CDF form. In particular, notice the p90 - p100 for background write rate are significantly lower with auto-tuned rate limiter enabled.</p>
+
+<p><img src="./Blog _ RocksDB_files/write-KBps-cdf.png" alt=""></p>
+
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(1)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Maysam Yabandeh</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2017/09/28/rocksdb-5-8-released.html">RocksDB 5.8 Released!</a></h1>
+    <p class="post-meta">Posted September 28, 2017</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <h3 id="public-api-change">Public API Change</h3>
+<ul>
+  <li>Users of <code class="highlighter-rouge">Statistics::getHistogramString()</code> will see fewer histogram buckets and different bucket endpoints.</li>
+  <li><code class="highlighter-rouge">Slice::compare</code> and BytewiseComparator <code class="highlighter-rouge">Compare</code> no longer accept <code class="highlighter-rouge">Slice</code>s containing nullptr.</li>
+  <li><code class="highlighter-rouge">Transaction::Get</code> and <code class="highlighter-rouge">Transaction::GetForUpdate</code> variants with <code class="highlighter-rouge">PinnableSlice</code> added.</li>
+</ul>
+
+<h3 id="new-features">New Features</h3>
+<ul>
+  <li>Add Iterator::Refresh(), which allows users to update the iterator state so that they can avoid some initialization costs of recreating iterators.</li>
+  <li>Replace dynamic_cast&lt;&gt; (except unit test) so people can choose to build with RTTI off. With make, release mode is by default built with -fno-rtti and debug mode is built without it. Users can override it by setting USE_RTTI=0 or 1.</li>
+  <li>Universal compactions including the bottom level can be executed in a dedicated thread pool. This alleviates head-of-line blocking in the compaction queue, which cause write stalling, particularly in multi-instance use cases. Users can enable this feature via <code class="highlighter-rouge">Env::SetBackgroundThreads(N, Env::Priority::BOTTOM)</code>, where <code class="highlighter-rouge">N &gt; 0</code>.</li>
+  <li>Allow merge operator to be called even with a single merge operand during compactions, by appropriately overriding <code class="highlighter-rouge">MergeOperator::AllowSingleOperand</code>.</li>
+  <li>Add <code class="highlighter-rouge">DB::VerifyChecksum()</code>, which verifies the checksums in all SST files in a running DB.</li>
+  <li>Block-based table support for disabling checksums by setting <code class="highlighter-rouge">BlockBasedTableOptions::checksum = kNoChecksum</code>.</li>
+</ul>
+
+<h3 id="bug-fixes">Bug Fixes</h3>
+<ul>
+  <li>Fix wrong latencies in <code class="highlighter-rouge">rocksdb.db.get.micros</code>, <code class="highlighter-rouge">rocksdb.db.write.micros</code>, and <code class="highlighter-rouge">rocksdb.sst.read.micros</code>.</li>
+  <li>Fix incorrect dropping of deletions during intra-L0 compaction.</li>
+  <li>Fix transient reappearance of keys covered by range deletions when memtable prefix bloom filter is enabled.</li>
+  <li>Fix potentially wrong file smallest key when range deletions separated by snapshot are written together.</li>
+</ul>
+
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(1)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Maysam Yabandeh</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2017/08/25/flushwal.html">FlushWAL; less fwrite, faster writes</a></h1>
+    <p class="post-meta">Posted August 25, 2017</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>When <code class="highlighter-rouge">DB::Put</code> is called, the data is written to both memtable (to be flushed to SST files later) and the WAL (write-ahead log) if it is enabled. In the case of a crash, RocksDB can recover as much as the memtable state that is reflected into the WAL. By default RocksDB automatically flushes the WAL from the application memory to the OS buffer after each <code class="highlighter-rouge">::Put</code>. It however can be configured to perform the flush manually after an explicit call to <code class="highlighter-rouge">::FlushWAL</code>. Not doing fwrite syscall after each <code class="highlighter-rouge">::Put</code> offers a tradeoff between reliability and write latency for the general case. As we explain below, some applications such as MyRocks benefit from this API to gain higher write throughput with however no compromise in reliability.</p>
+
+<h3 id="how-much-is-the-gain">How much is the gain?</h3>
+
+<p>Using <code class="highlighter-rouge">::FlushWAL</code> API along with setting <code class="highlighter-rouge">DBOptions.concurrent_prepare</code>, MyRocks achieves 40% higher throughput in Sysbench’s <a href="https://github.com/akopytov/sysbench/blob/master/src/lua/oltp_update_non_index.lua">update-nonindex</a> benchmark.</p>
+
+<h3 id="write-flush-and-sync">Write, Flush, and Sync</h3>
+
+<p>The write to the WAL is first written to the application memory buffer. The buffer in the next step is “flushed” to OS buffer by calling fwrite syscall. The OS buffer is later “synced” to the persistent storage. The data in the OS buffer, although not persisted yet, will survive the application crash. By default, the flush occurs automatically upon each call to <code class="highlighter-rouge">DB::Put</code> or <code class="highlighter-rouge">DB::Write</code>. The user can additionally request sync after each write by setting <code class="highlighter-rouge">WriteOptions::sync</code>.</p>
+
+<h3 id="flushwal-api">FlushWAL API</h3>
+
+<p>The user can turn off the automatic flush of the WAL by setting <code class="highlighter-rouge">DBOptions::manual_wal_flush</code>. In that case, the WAL buffer is flushed when it is either full or <code class="highlighter-rouge">DB::FlushWAL</code> is called by the user. The API also accepts a boolean argument should we want to sync right after the flush: <code class="highlighter-rouge">::FlushWAL(true)</code>.</p>
+
+<h3 id="success-story-myrocks">Success story: MyRocks</h3>
+
+<p>Some applications that use RocksDB, already have other machinsims in place to provide reliability. MySQL for example uses 2PC (two-phase commit) to write to both binlog as well as the storage engine such as InnoDB and MyRocks. The group commit logic in MySQL allows the 1st phase (Prepare) to be run in parallel but after a commit group is formed performs the 2nd phase (Commit) in a serial manner. This makes low commit latency in the storage engine essential for acheiving high throughput. The commit in MyRocks includes writing to the RocksDB WAL, which as explaiend above, by default incures the latency of flushing the WAL new appends to the OS buffer.</p>
+
+<p>Since binlog helps in recovering from some failure scenarios, MySQL can provide reliability without however needing a storage WAL flush after each individual commit. MyRocks benefits from this property, disables automatic WAL flush in RocksDB, and manually calls <code class="highlighter-rouge">::FlushWAL</code> when requested by MySQL.</p>
+
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(1)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Maysam Yabandeh</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2017/08/24/pinnableslice.html">PinnableSlice; less memcpy with point lookups</a></h1>
+    <p class="post-meta">Posted August 24, 2017</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>The classic API for <a href="https://github.com/facebook/rocksdb/blob/9e583711144f580390ce21a49a8ceacca338fcd5/include/rocksdb/db.h#L310">DB::Get</a> receives a std::string as argument to which it will copy the value. The memcpy overhead could be non-trivial when the value is large. The <a href="https://github.com/facebook/rocksdb/blob/9e583711144f580390ce21a49a8ceacca338fcd5/include/rocksdb/db.h#L322">new API</a> receives a PinnableSlice instead, which avoids memcpy in most of the cases.</p>
+
+<h3 id="what-is-pinnableslice">What is PinnableSlice?</h3>
+
+<p>Similarly to Slice, PinnableSlice refers to some in-memory data so it does not incur the memcpy cost. To ensure that the data will not be erased while it is being processed by the user, PinnableSlice, as its name suggests, has the data pinned in memory. The pinned data are released when PinnableSlice object is destructed or when ::Reset is invoked explicitly on it.</p>
+
+<h3 id="how-good-is-it">How good is it?</h3>
+
+<p>Here are the improvements in throughput for an <a href="https://github.com/facebook/rocksdb/pull/1756#issuecomment-286201693">in-memory benchmark</a>:
+* value 1k byte: 14%
+* value 10k byte: 34%</p>
+
+<h3 id="any-limitations">Any limitations?</h3>
+
+<p>PinnableSlice tries to avoid memcpy as much as possible. The primary gain is when reading large values from the block cache. There are however cases that it would still have to copy the data into its internal buffer. The reason is mainly the complexity of implementation and if there is enough motivation on the application side. the scope of PinnableSlice could be extended to such cases too. These include:
+* Merged values
+* Reads from memtables</p>
+
+<h3 id="how-to-use-it">How to use it?</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6</pre></td><td class="code"><pre><span class="n">PinnableSlice</span> <span class="n">pinnable_val</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">stopped</span><span class="p">)</span> <span class="p">{</span> 
+   <span class="k">auto</span> <span class="n">s</span> <span class="o">=</span> <span class="n">db</span><span class="o">-&gt;</span><span class="n">Get</span><span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="n">cf</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">pinnable_val</span><span class="p">);</span>
+   <span class="c1">// ... use it
+</span>   <span class="n">pinnable_val</span><span class="p">.</span><span class="n">Reset</span><span class="p">();</span> <span class="c1">// then release it immediately
+</span><span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>You can also <a href="https://github.com/facebook/rocksdb/blob/9e583711144f580390ce21a49a8ceacca338fcd5/include/rocksdb/db.h#L314">initialize the internal buffer</a> of PinnableSlice by passing your own string in the constructor. <a href="https://github.com/facebook/rocksdb/blob/master/examples/simple_example.cc">simple_example.cc</a> demonstrates that with more examples.</p>
+
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(3)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Yi Wu</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2017/07/25/rocksdb-5-6-1-released.html">RocksDB 5.6.1 Released!</a></h1>
+    <p class="post-meta">Posted July 25, 2017</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <h3 id="public-api-change">Public API Change</h3>
+<ul>
+  <li>Scheduling flushes and compactions in the same thread pool is no longer supported by setting <code class="highlighter-rouge">max_background_flushes=0</code>. Instead, users can achieve this by configuring their high-pri thread pool to have zero threads. See https://github.com/facebook/rocksdb/wiki/Thread-Pool for more details.</li>
+  <li>Replace <code class="highlighter-rouge">Options::max_background_flushes</code>, <code class="highlighter-rouge">Options::max_background_compactions</code>, and <code class="highlighter-rouge">Options::base_background_compactions</code> all with <code class="highlighter-rouge">Options::max_background_jobs</code>, which automatically decides how many threads to allocate towards flush/compaction.</li>
+  <li>options.delayed_write_rate by default take the value of options.rate_limiter rate.</li>
+  <li>Replace global variable <code class="highlighter-rouge">IOStatsContext iostats_context</code> with <code class="highlighter-rouge">IOStatsContext* get_iostats_context()</code>; replace global variable <code class="highlighter-rouge">PerfContext perf_context</code> with <code class="highlighter-rouge">PerfContext* get_perf_context()</code>.</li>
+</ul>
+
+<h3 id="new-features">New Features</h3>
+<ul>
+  <li>Change ticker/histogram statistics implementations to use core-local storage. This improves aggregation speed compared to our previous thread-local approach, particularly for applications with many threads. See http://rocksdb.org/blog/2017/05/14/core-local-stats.html for more details.</li>
+  <li>Users can pass a cache object to write buffer manager, so that they can cap memory usage for memtable and block cache using one single limit.</li>
+  <li>Flush will be triggered when 7/8 of the limit introduced by write_buffer_manager or db_write_buffer_size is triggered, so that the hard threshold is hard to hit. See https://github.com/facebook/rocksdb/wiki/Write-Buffer-Manager for more details.</li>
+  <li>Introduce WriteOptions.low_pri. If it is true, low priority writes will be throttled if the compaction is behind. See https://github.com/facebook/rocksdb/wiki/Low-Priority-Write for more details.</li>
+  <li><code class="highlighter-rouge">DB::IngestExternalFile()</code> now supports ingesting files into a database containing range deletions.</li>
+</ul>
+
+<h3 id="bug-fixes">Bug Fixes</h3>
+<ul>
+  <li>Shouldn’t ignore return value of fsync() in flush.</li>
+</ul>
+
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(4)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Aaron Gao</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2017/06/29/rocksdb-5-5-1-released.html">RocksDB 5.5.1 Released!</a></h1>
+    <p class="post-meta">Posted June 29, 2017</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <h3 id="new-features">New Features</h3>
+<ul>
+  <li>FIFO compaction to support Intra L0 compaction too with CompactionOptionsFIFO.allow_compaction=true.</li>
+  <li>Statistics::Reset() to reset user stats.</li>
+  <li>ldb add option –try_load_options, which will open DB with its own option file.</li>
+  <li>Introduce WriteBatch::PopSavePoint to pop the most recent save point explicitly.</li>
+  <li>Support dynamically change <code class="highlighter-rouge">max_open_files</code> option via SetDBOptions()</li>
+  <li>Added DB::CreateColumnFamilie() and DB::DropColumnFamilies() to bulk create/drop column families.</li>
+  <li>Add debugging function <code class="highlighter-rouge">GetAllKeyVersions</code> to see internal versions of a range of keys.</li>
+  <li>Support file ingestion with universal compaction style</li>
+  <li>Support file ingestion behind with option <code class="highlighter-rouge">allow_ingest_behind</code></li>
+  <li>New option enable_pipelined_write which may improve write throughput in case writing from multiple threads and WAL enabled.</li>
+</ul>
+
+<h3 id="bug-fixes">Bug Fixes</h3>
+<ul>
+  <li>Fix the bug that Direct I/O uses direct reads for non-SST file</li>
+  <li>Fix the bug that flush doesn’t respond to fsync result</li>
+</ul>
+
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(2)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Andrew Kryczka</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2017/06/26/17-level-based-changes.html">Level-based Compaction Changes</a></h1>
+    <p class="post-meta">Posted June 26, 2017</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <h3 id="introduction">Introduction</h3>
+
+<p>RocksDB provides an option to limit the number of L0 files, which bounds read-amplification. Since L0 files (unlike files at lower levels) can span the entire key-range, a key might be in any file, thus reads need to check them one-by-one. Users often wish to configure a low limit to improve their read latency.</p>
+
+<p>Although, the mechanism with which we enforce L0’s file count limit may be unappealing. When the limit is reached, RocksDB intentionally delays user writes. This slows down accumulation of files in L0, and frees up resources for compacting files down to lower levels. But adding delays will significantly increase user-visible write latency jitter.</p>
+
+<p>Also, due to how L0 files can span the entire key-range, compaction parallelization is limited. Files at L0 or L1 may be locked due to involvement in pending L0-&gt;L1 or L1-&gt;L2 compactions. We can only schedule a parallel L0-&gt;L1 compaction if it does not require any of the locked files, which is typically not the case.</p>
+
+<p>To handle these constraints better, we added a new type of compaction, L0-&gt;L0. It quickly reduces file count in L0 and can be scheduled even when L1 files are locked, unlike L0-&gt;L1. We also changed the L0-&gt;L1 picking algorithm to increase opportunities for parallelism.</p>
+
+<h3 id="old-l0-l1-picking-logic">Old L0-&gt;L1 Picking Logic</h3>
+
+<p>Previously, our logic for picking which L0 file to compact was the same as every other level: pick the largest file in the level. One special property of L0-&gt;L1 compaction is that files can overlap in the input level, so those overlapping files must be pulled in as well. For example, a compaction may look like this:</p>
+
+<p><img src="./Blog _ RocksDB_files/full-range.png" alt="full-range.png"></p>
+
+<p>This compaction pulls in every L0 and L1 file. This happens regardless of which L0 file is initially chosen as each file overlaps with every other file.</p>
+
+<p>Users may insert their data less uniformly in the key-range. For example, a database may look like this during L0-&gt;L1 compaction:</p>
+
+<p><img src="./Blog _ RocksDB_files/part-range-old.png" alt="part-range-old.png"></p>
+
+<p>Let’s say the third file from the top is the largest, and let’s say the top two files are created after the compaction started. When the compaction is picked, the fourth L0 file and six rightmost L1 files are pulled in due to overlap. Notice this leaves the database in a state where we might not be able to schedule parallel compactions. For example, if the sixth file from the top is the next largest, we can’t compact it because it overlaps with the top two files, which overlap with the locked L0 files.</p>
+
+<p>We can now see the high-level problems with this approach more clearly. First, locked files in L0 or L1 prevent us from parallelizing compactions. When locked files block L0-&gt;L1 compaction, there is nothing we can do to eliminate L0 files. Second, L0-&gt;L1 compactions are relatively slow. As we saw, when keys are uniformly distributed, L0-&gt;L1 compacts two entire levels. While this is happening, new files are being flushed to L0, advancing towards the file count limit.</p>
+
+<h3 id="new-l0-l0-algorithm">New L0-&gt;L0 Algorithm</h3>
+
+<p>We introduced compaction within L0 to improve both parallelization and speed of reducing L0 file count. An L0-&gt;L0 compaction may look like this:</p>
+
+<p><img src="./Blog _ RocksDB_files/l1-l2-contend.png" alt="l1-l2-contend.png"></p>
+
+<p>Say the L1-&gt;L2 compaction started first. Now L0-&gt;L1 is prevented by the locked L1 file. In this case, we compact files within L0. This allows us to start the work for eliminating L0 files earlier. It also lets us do less work since we don’t pull in any L1 files, whereas L0-&gt;L1 compaction would’ve pulled in all of them. This lets us quickly reduce L0 file count to keep read-amp low while sustaining large bursts of writes (i.e., fast accumulation of L0 files).</p>
+
+<p>The tradeoff is this increases total compaction work, as we’re now compacting files without contributing towards our eventual goal of moving them towards lower levels. Our benchmarks, though, consistently show less compaction stalls and improved write throughput. One justification is that L0 file data is highly likely in page cache and/or block cache due to it being recently written and frequently accessed. So, this type of compaction is relatively cheap compared to compactions at lower levels.</p>
+
+<p>This feature is available since RocksDB 5.4.</p>
+
+<h3 id="new-l0-l1-picking-logic">New L0-&gt;L1 Picking Logic</h3>
+
+<p>Recall how the old L0-&gt;L1 picking algorithm chose the largest L0 file for compaction. This didn’t fit well with L0-&gt;L0 compaction, which operates on a span of files. That span begins at the newest L0 file, and expands towards older files as long as they’re not being compacted. Since the largest file may be anywhere, the old L0-&gt;L1 picking logic could arbitrarily prevent us from getting a long span of files. See the second illustration in this post for a scenario where this would happen.</p>
+
+<p>So, we changed the L0-&gt;L1 picking algorithm to start from the oldest file and expand towards newer files as long as they’re not being compacted. For example:</p>
+
+<p><img src="./Blog _ RocksDB_files/l0-l1-contend.png" alt="l0-l1-contend.png"></p>
+
+<p>Now, there can never be L0 files unreachable for L0-&gt;L0 due to L0-&gt;L1 selecting files in the middle. When longer spans of files are available for L0-&gt;L0, we perform less compaction work per deleted L0 file, thus improving efficiency.</p>
+
+<p>This feature will be available in RocksDB 5.7.</p>
+
+<h3 id="performance-changes">Performance Changes</h3>
+
+<p>Mark Callaghan did the most extensive benchmarking of this feature’s impact on MyRocks. See his results <a href="http://smalldatum.blogspot.com/2017/05/innodb-myrocks-and-tokudb-on-insert.html">here</a>. Note the primary change between his March 17 and April 14 builds is the latter performs L0-&gt;L0 compaction.</p>
+
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(5)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Sagar Vemuri</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2017/05/26/rocksdb-5-4-5-released.html">RocksDB 5.4.5 Released!</a></h1>
+    <p class="post-meta">Posted May 26, 2017</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <h3 id="public-api-change">Public API Change</h3>
+<ul>
+  <li>Support dynamically changing <code class="highlighter-rouge">stats_dump_period_sec</code> option via SetDBOptions().</li>
+  <li>Added ReadOptions::max_skippable_internal_keys to set a threshold to fail a request as incomplete when too many keys are being skipped while using iterators.</li>
+  <li>DB::Get in place of std::string accepts PinnableSlice, which avoids the extra memcpy of value to std::string in most of cases.
+    <ul>
+      <li>PinnableSlice releases the pinned resources that contain the value when it is destructed or when ::Reset() is called on it.</li>
+      <li>The old API that accepts std::string, although discouraged, is still supported.</li>
+    </ul>
+  </li>
+  <li>Replace Options::use_direct_writes with Options::use_direct_io_for_flush_and_compaction. See Direct IO wiki for details.</li>
+</ul>
+
+<h3 id="new-features">New Features</h3>
+<ul>
+  <li>Memtable flush can be avoided during checkpoint creation if total log file size is smaller than a threshold specified by the user.</li>
+  <li>Introduce level-based L0-&gt;L0 compactions to reduce file count, so write delays are incurred less often.</li>
+  <li>(Experimental) Partitioning filters which creates an index on the partitions. The feature can be enabled by setting partition_filters when using kFullFilter. Currently the feature also requires two-level indexing to be enabled. Number of partitions is the same as the number of partitions for indexes, which is controlled by metadata_block_size.</li>
+  <li>DB::ResetStats() to reset internal stats.</li>
+  <li>Added CompactionEventListener and EventListener::OnFlushBegin interfaces.</li>
+  <li>Added DB::CreateColumnFamilie() and DB::DropColumnFamilies() to bulk create/drop column families.</li>
+  <li>Facility for cross-building RocksJava using Docker.</li>
+</ul>
+
+<h3 id="bug-fixes">Bug Fixes</h3>
+<ul>
+  <li>Fix WriteBatchWithIndex address use after scope error.</li>
+  <li>Fix WritableFile buffer size in direct IO.</li>
+  <li>Add prefetch to PosixRandomAccessFile in buffered io.</li>
+  <li>Fix PinnableSlice access invalid address when row cache is enabled.</li>
+  <li>Fix huge fallocate calls fail and make XFS unhappy.</li>
+  <li>Fix memory alignment with logical sector size.</li>
+  <li>Fix alignment in ReadaheadRandomAccessFile.</li>
+  <li>Fix bias with read amplification stats (READ_AMP_ESTIMATE_USEFUL_BYTES and READ_AMP_TOTAL_READ_BYTES).</li>
+  <li>Fix a manual / auto compaction data race.</li>
+  <li>Fix CentOS 5 cross-building of RocksJava.</li>
+  <li>Build and link with ZStd when creating the static RocksJava build.</li>
+  <li>Fix snprintf’s usage to be cross-platform.</li>
+  <li>Fix build errors with blob DB.</li>
+  <li>Fix readamp test type inconsistency.</li>
+</ul>
+
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(2)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Andrew Kryczka</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2017/05/14/core-local-stats.html">Core-local Statistics</a></h1>
+    <p class="post-meta">Posted May 14, 2017</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <h2 id="origins-global-atomics">Origins: Global Atomics</h2>
+
+<p>Until RocksDB 4.12, ticker/histogram statistics were implemented with std::atomic values shared across the entire program. A ticker consists of a single atomic, while a histogram consists of several atomics to represent things like min/max/per-bucket counters. These statistics could be updated by all user/background threads.</p>
+
+<p>For concurrent/high-throughput workloads, cache line bouncing of atomics caused high CPU utilization. For example, we have tickers that count block cache hits and misses. Almost every user read increments these tickers a few times. Many concurrent user reads would cause the cache lines containing these atomics to bounce between cores.</p>
+
+<h3 id="performance">Performance</h3>
+
+<p>Here are perf results for 32 reader threads where most reads (99%+) are served by uncompressed block cache. Such a scenario stresses the statistics code heavily.</p>
+
+<p>Benchmark command: <code class="highlighter-rouge">TEST_TMPDIR=/dev/shm/ perf record -g ./db_bench -statistics -use_existing_db=true -benchmarks=readrandom -threads=32 -cache_size=1048576000 -num=1000000 -reads=1000000 &amp;&amp; perf report -g --children</code></p>
+
+<p>Perf snippet for “cycles” event:</p>
+
+<div class="highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3</pre></td><td class="code"><pre>  Children  Self    Command   Shared Object  Symbol
++   30.33%  30.17%  db_bench  db_bench       [.] rocksdb::StatisticsImpl::recordTick
++    3.65%   0.98%  db_bench  db_bench       [.] rocksdb::StatisticsImpl::measureTime
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Perf snippet for “cache-misses” event:</p>
+
+<div class="highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3</pre></td><td class="code"><pre>  Children  Self    Command   Shared Object  Symbol
++   19.54%  19.50%  db_bench  db_bench 	     [.] rocksdb::StatisticsImpl::recordTick
++    3.44%   0.57%  db_bench  db_bench       [.] rocksdb::StatisticsImpl::measureTime
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>The high CPU overhead for updating tickers and histograms corresponds well to the high cache misses.</p>
+
+<h2 id="thread-locals-faster-updates">Thread-locals: Faster Updates</h2>
+
+<p>Since RocksDB 4.12, ticker/histogram statistics use thread-local storage. Each thread has a local set of atomic values that no other thread can update. This prevents the cache line bouncing problem described above. Even though updates to a given value are always made by the same thread, atomics are still useful to synchronize with aggregations for querying statistics.</p>
+
+<p>Implementing this approach involved a couple challenges. First, each query for a statistic’s global value must aggregate all threads’ local values. This adds some overhead, which may pass unnoticed if statistics are queried infrequently. Second, exited threads’ local values are still needed to provide accurate statistics. We handle this by merging a thread’s local values into process-wide variables upon thread exit.</p>
+
+<h3 id="performance-1">Performance</h3>
+
+<p>Update benchmark setup is same as before. CPU overhead improved 7.8x compared to global atomics, corresponding to a 17.8x reduction in cache-misses overhead.</p>
+
+<p>Perf snippet for “cycles” event:</p>
+
+<div class="highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3</pre></td><td class="code"><pre>  Children  Self    Command   Shared Object  Symbol
++    2.96%  0.87%   db_bench  db_bench       [.] rocksdb::StatisticsImpl::recordTick
++    1.37%  0.10%   db_bench  db_bench       [.] rocksdb::StatisticsImpl::measureTime
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Perf snippet for “cache-misses” event:</p>
+
+<div class="highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3</pre></td><td class="code"><pre>  Children  Self    Command   Shared Object  Symbol
++    1.21%  0.65%   db_bench  db_bench       [.] rocksdb::StatisticsImpl::recordTick
+     0.08%  0.00%   db_bench  db_bench       [.] rocksdb::StatisticsImpl::measureTime
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>To measure statistics query latency, we ran sysbench with 4K OLTP clients concurrently with one client that queries statistics repeatedly. Times shown are in milliseconds.</p>
+
+<div class="highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4</pre></td><td class="code"><pre> min: 18.45
+ avg: 27.91
+ max: 231.65
+ 95th percentile: 55.82
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<h2 id="core-locals-faster-querying">Core-locals: Faster Querying</h2>
+
+<p>The thread-local approach is working well for applications calling RocksDB from only a few threads, or polling statistics infrequently. Eventually, though, we found use cases where those assumptions do not hold. For example, one application has per-connection threads and typically runs into performance issues when connection count grows very high. For debugging such issues, they want high-frequency statistics polling to correlate issues in their application with changes in RocksDB’s state.</p>
+
+<p>Once <a href="https://github.com/facebook/rocksdb/pull/2258">PR #2258</a> lands, ticker/histogram statistics will be local to each CPU core. Similarly to thread-local, each core updates only its local values, thus avoiding cache line bouncing. Local values are still atomics to make aggregation possible. With this change, query work depends only on number of cores, not the number of threads. So, applications with many more threads than cores can no longer impact statistics query latency.</p>
+
+<h3 id="performance-2">Performance</h3>
+
+<p>Update benchmark setup is same as before. CPU overhead worsened ~23% compared to thread-local, while cache performance was unchanged.</p>
+
+<p>Perf snippet for “cycles” event:</p>
+
+<div class="highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3</pre></td><td class="code"><pre>  Children  Self    Command   Shared Object  Symbol
++    2.96%  0.87%   db_bench  db_bench       [.] rocksdb::StatisticsImpl::recordTick
++    1.37%  0.10%   db_bench  db_bench       [.] rocksdb::StatisticsImpl::measureTime
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Perf snippet for “cache-misses” event:</p>
+
+<div class="highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3</pre></td><td class="code"><pre>  Children  Self    Command   Shared Object  Symbol
++    1.21%  0.65%   db_bench  db_bench       [.] rocksdb::StatisticsImpl::recordTick
+     0.08%  0.00%   db_bench  db_bench       [.] rocksdb::StatisticsImpl::measureTime
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+<p>Query latency is measured same as before with times in milliseconds. Average latency improved by 6.3x compared to thread-local.</p>
+
+<div class="highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4</pre></td><td class="code"><pre> min: 2.47
+ avg: 4.45
+ max: 91.13
+ 95th percentile: 7.56
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(1)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Maysam Yabandeh</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2017/05/12/partitioned-index-filter.html">Partitioned Index/Filters</a></h1>
+    <p class="post-meta">Posted May 12, 2017</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>As DB/mem ratio gets larger, the memory footprint of filter/index blocks becomes non-trivial. Although <code class="highlighter-rouge">cache_index_and_filter_blocks</code> allows storing only a subset of them in block cache, their relatively large size negatively affects the performance by i) occupying the block cache space that could otherwise be used for caching data, ii) increasing the load on the disk storage by loading them into the cache after a miss. Here we illustrate these problems in more detail and explain how partitioning index/filters alleviates the overhead.</p>
+
+<h3 id="how-large-are-the-indexfilter-blocks">How large are the index/filter blocks?</h3>
+
+<p>RocksDB has by default one index/filter block per SST file. The size of the index/filter varies based on the configuration but for a SST of size 256MB the index/filter block of size 0.5/5MB is typical, which is much larger than the typical data block size of 4-32KB. That is fine when all index/filters fit perfectly into memory and hence are read once per SST lifetime, not so much when they compete with data blocks for the block cache space and are also likely to be re-read many times from the disk.</p>
+
+<h3 id="what-is-the-big-deal-with-large-indexfilter-blocks">What is the big deal with large index/filter blocks?</h3>
+
+<p>When index/filter blocks are stored in block cache they are effectively competing with data blocks (as well as with each other) on this scarce resource. A filter of size 5MB is occupying the space that could otherwise be used to cache 1000s of data blocks (of size 4KB). This would result in more cache misses for data blocks. The large index/filters also kick each other out of the block cache more often and exacerbate their own cache miss rate too. This is while only a small part of the index/filter block might have been actually used during its lifetime in the cache.</p>
+
+<p>After the cache miss of an index/filter, it has to be reloaded from the disk, and its large size is not helping in reducing the IO cost. While a simple point lookup might need at most a couple of data block reads (of size 4KB) one from each layer of LSM, it might end up also loading multiple megabytes of index/filter blocks. If that happens often then the disk is spending more time serving index/filters rather than the actual data blocks.</p>
+
+<h2 id="what-is-partitioned-indexfilters">What is partitioned index/filters?</h2>
+
+<p>With partitioning, the index/filter of a SST file is partitioned into smaller blocks with an additional top-level index on them. When reading an index/filter, only top-level index is loaded into memory. The partitioned index/filter then uses the top-level index to load on demand into the block cache the partitions that are required to perform the index/filter query. The top-level index, which has much smaller memory footprint, can be stored in heap or block cache depending on the <code class="highlighter-rouge">cache_index_and_filter_blocks</code> setting.</p>
+
+<h3 id="success-stories">Success stories</h3>
+
+<h4 id="hdd-100tb-db">HDD, 100TB DB</h4>
+
+<p>In this example we have a DB of size 86G on HDD and emulate the small memory that is present to a node with 100TB of data by using direct IO (skipping OS file cache) and a very small block cache of size 60MB. Partitioning improves throughput by 11x from 5 op/s to 55 op/s.</p>
+
+<h4 id="ssd-linkbench">SSD, Linkbench</h4>
+
+<p>In this example we have a DB of size 300G on SSD and emulate the small memory that would be available in presence of other DBs on the same node by by using direct IO (skipping OS file cache) and block cache of size 6G and 2G. Without partitioning the linkbench throughput drops from 38k tps to 23k when reducing block cache size from 6G to 2G. With partitioning the throughput drops from 38k to only 30k.</p>
+
+<p>Learn more <a href="https://github.com/facebook/rocksdb/wiki/Partitioned-Index-Filters">here</a>.</p>
+
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(6)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Siying Dong</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2017/03/02/rocksdb-5-2-1-released.html">RocksDB 5.2.1 Released!</a></h1>
+    <p class="post-meta">Posted March 02, 2017</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <h3 id="public-api-change">Public API Change</h3>
+<ul>
+  <li>NewLRUCache() will determine number of shard bits automatically based on capacity, if the user doesn’t pass one. This also impacts the default block cache when the user doesn’t explict provide one.</li>
+  <li>Change the default of delayed slowdown value to 16MB/s and further increase the L0 stop condition to 36 files.</li>
+</ul>
+
+<h3 id="new-features">New Features</h3>
+<ul>
+  <li>Added new overloaded function GetApproximateSizes that allows to specify if memtable stats should be computed only without computing SST files’ stats approximations.</li>
+  <li>Added new function GetApproximateMemTableStats that approximates both number of records and size of memtables.</li>
+  <li>(Experimental) Two-level indexing that partition the index and creates a 2nd level index on the partitions. The feature can be enabled by setting kTwoLevelIndexSearch as IndexType and configuring index_per_partition.</li>
+</ul>
+
+<h3 id="bug-fixes">Bug Fixes</h3>
+<ul>
+  <li>RangeSync() should work if ROCKSDB_FALLOCATE_PRESENT is not set</li>
+  <li>Fix wrong results in a data race case in Get()</li>
+  <li>Some fixes related to 2PC.</li>
+  <li>Fix several bugs in Direct I/O supports.</li>
+  <li>Fix a regression bug which can cause Seek() to miss some keys if the return key has been updated many times after the snapshot which is used by the iterator.</li>
+</ul>
+
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(7)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Islam AbdelRahman</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2017/02/17/bulkoad-ingest-sst-file.html">Bulkloading by ingesting external SST files</a></h1>
+    <p class="post-meta">Posted February 17, 2017</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <h2 id="introduction">Introduction</h2>
+
+<p>One of the basic operations of RocksDB is writing to RocksDB, Writes happen when user call (DB::Put, DB::Write, DB::Delete … ), but what happens when you write to RocksDB ? .. this is a brief description of what happens.
+- User insert a new key/value by calling DB::Put() (or DB::Write())
+- We create a new entry for the new key/value in our in-memory structure (memtable / SkipList by default) and we assign it a new sequence number.
+- When the memtable exceeds a specific size (64 MB for example), we convert this memtable to a SST file, and put this file in level 0 of our LSM-Tree
+- Later, compaction will kick in and move data from level 0 to level 1, and then from level 1 to level 2 .. and so on</p>
+
+<p>But what if we can skip these steps and add data to the lowest possible level directly ? This is what bulk-loading does</p>
+
+<h2 id="bulkloading">Bulkloading</h2>
+
+<ul>
+  <li>Write all of our keys and values into SST file outside of the DB</li>
+  <li>Add the SST file into the LSM directly</li>
+</ul>
+
+<p>This is bulk-loading, and in specific use-cases it allow users to achieve faster data loading and better write-amplification.</p>
+
+<p>and doing it is as simple as 
+```cpp
+Options options;
+SstFileWriter sst_file_writer(EnvOptions(), options, options.comparator);
+Status s = sst_file_writer.Open(file_path);
+assert(s.ok());</p>
+
+<p>// Insert rows into the SST file, note that inserted keys must be 
+// strictly increasing (based on options.comparator)
+for (…) {
+  s = sst_file_writer.Add(key, value);
+  assert(s.ok());
+}</p>
+
+<p>// Ingest the external SST file into the DB
+s = db_-&gt;IngestExternalFile({“/home/usr/file1.sst”}, IngestExternalFileOptions());
+assert(s.ok());
+```</p>
+
+<p>You can find more details about how to generate SST files and ingesting them into RocksDB in this <a href="https://github.com/facebook/rocksdb/wiki/Creating-and-Ingesting-SST-files">wiki page</a></p>
+
+<h2 id="use-cases">Use cases</h2>
+<p>There are multiple use cases where bulkloading could be useful, for example
+- Generating SST files in offline jobs in Hadoop, then downloading and ingesting the SST files into RocksDB
+- Migrating shards between machines by dumping key-range in SST File and loading the file in a different machine
+- Migrating from a different storage (InnoDB to RocksDB migration in MyRocks)</p>
+
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(1)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Maysam Yabandeh</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2017/02/07/rocksdb-5-1-2-released.html">RocksDB 5.1.2 Released!</a></h1>
+    <p class="post-meta">Posted February 07, 2017</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <h3 id="public-api-change">Public API Change</h3>
+<ul>
+  <li>Support dynamically change <code class="highlighter-rouge">delete_obsolete_files_period_micros</code> option via SetDBOptions().</li>
+  <li>Added EventListener::OnExternalFileIngested which will be called when IngestExternalFile() add a file successfully.</li>
+  <li>BackupEngine::Open and BackupEngineReadOnly::Open now always return error statuses matching those of the backup Env.</li>
+</ul>
+
+<h3 id="bug-fixes">Bug Fixes</h3>
+<ul>
+  <li>Fix the bug that if 2PC is enabled, checkpoints may loss some recent transactions.</li>
+  <li>When file copying is needed when creating checkpoints or bulk loading files, fsync the file after the file copying.</li>
+</ul>
+
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(3)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Yi Wu</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2017/01/06/rocksdb-5-0-1-released.html">RocksDB 5.0.1 Released!</a></h1>
+    <p class="post-meta">Posted January 06, 2017</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <h3 id="public-api-change">Public API Change</h3>
+
+<ul>
+  <li>Options::max_bytes_for_level_multiplier is now a double along with all getters and setters.</li>
+  <li>Support dynamically change <code class="highlighter-rouge">delayed_write_rate</code> and <code class="highlighter-rouge">max_total_wal_size</code> options via SetDBOptions().</li>
+  <li>Introduce DB::DeleteRange for optimized deletion of large ranges of contiguous keys.</li>
+  <li>Support dynamically change <code class="highlighter-rouge">delayed_write_rate</code> option via SetDBOptions().</li>
+  <li>Options::allow_concurrent_memtable_write and Options::enable_write_thread_adaptive_yield are now true by default.</li>
+  <li>Remove Tickers::SEQUENCE_NUMBER to avoid confusion if statistics object is shared among RocksDB instance. Alternatively DB::GetLatestSequenceNumber() can be used to get the same value.</li>
+  <li>Options.level0_stop_writes_trigger default value changes from 24 to 32.</li>
+  <li>New compaction filter API: CompactionFilter::FilterV2(). Allows to drop ranges of keys.</li>
+  <li>Removed flashcache support.</li>
+  <li>DB::AddFile() is deprecated and is replaced with DB::IngestExternalFile(). DB::IngestExternalFile() remove all the restrictions that existed for DB::AddFile.</li>
+</ul>
+
+<h3 id="new-features">New Features</h3>
+
+<ul>
+  <li>Add avoid_flush_during_shutdown option, which speeds up DB shutdown by not flushing unpersisted data (i.e. with disableWAL = true). Unpersisted data will be lost. The options is dynamically changeable via SetDBOptions().</li>
+  <li>Add memtable_insert_with_hint_prefix_extractor option. The option is mean to reduce CPU usage for inserting keys into memtable, if keys can be group by prefix and insert for each prefix are sequential or almost sequential. See include/rocksdb/options.h for more details.</li>
+  <li>Add LuaCompactionFilter in utilities.  This allows developers to write compaction filters in Lua.  To use this feature, LUA_PATH needs to be set to the root directory of Lua.</li>
+  <li>No longer populate “LATEST_BACKUP” file in backup directory, which formerly contained the number of the latest backup. The latest backup can be determined by finding the highest numbered file in the “meta/” subdirectory.</li>
+</ul>
+
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(6)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Siying Dong</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2016/09/28/rocksdb-4-11-2-released.html">RocksDB 4.11.2 Released!</a></h1>
+    <p class="post-meta">Posted September 28, 2016</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>We abandoned release candidates 4.10.x and directly go to 4.11.2 from 4.9, to make sure the latest release is stable. In 4.11.2, we fixed several data corruption related bugs introduced in 4.9.0.</p>
+
+<h2 id="section">4.11.2 (9/15/2016)</h2>
+
+<h3 id="bug-fixes">Bug fixes</h3>
+
+<ul>
+  <li>Segfault when failing to open an SST file for read-ahead iterators.</li>
+  <li>WAL without data for all CFs is not deleted after recovery.</li>
+</ul>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2016/09/28/rocksdb-4-11-2-released.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(3)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Yi Wu</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2016/07/26/rocksdb-4-8-released.html">RocksDB 4.8 Released!</a></h1>
+    <p class="post-meta">Posted July 26, 2016</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <h2 id="section">4.8.0 (5/2/2016)</h2>
+
+<h3 id="httpsgithubcomfacebookrocksdbblobmasterhistorymdpublic-api-change-1public-api-change"><a href="https://github.com/facebook/rocksdb/blob/master/HISTORY.md#public-api-change-1"></a>Public API Change</h3>
+
+<ul>
+  <li>Allow preset compression dictionary for improved compression of block-based tables. This is supported for zlib, zstd, and lz4. The compression dictionary’s size is configurable via CompressionOptions::max_dict_bytes.</li>
+  <li>Delete deprecated classes for creating backups (BackupableDB) and restoring from backups (RestoreBackupableDB). Now, BackupEngine should be used for creating backups, and BackupEngineReadOnly should be used for restorations. For more details, see <a href="https://github.com/facebook/rocksdb/wiki/How-to-backup-RocksDB%3F">https://github.com/facebook/rocksdb/wiki/How-to-backup-RocksDB%3F</a></li>
+  <li>Expose estimate of per-level compression ratio via DB property: “rocksdb.compression-ratio-at-levelN”.</li>
+  <li>Added EventListener::OnTableFileCreationStarted. EventListener::OnTableFileCreated will be called on failure case. User can check creation status via TableFileCreationInfo::status.</li>
+</ul>
+
+<h3 id="httpsgithubcomfacebookrocksdbblobmasterhistorymdnew-features-2new-features"><a href="https://github.com/facebook/rocksdb/blob/master/HISTORY.md#new-features-2"></a>New Features</h3>
+
+<ul>
+  <li>Add ReadOptions::readahead_size. If non-zero, NewIterator will create a new table reader which performs reads of the given size.</li>
+</ul>
+
+<p><br></p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2016/07/26/rocksdb-4-8-released.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(6)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Siying Dong</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2016/04/26/rocksdb-4-5-1-released.html">RocksDB 4.5.1 Released!</a></h1>
+    <p class="post-meta">Posted April 26, 2016</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <h2 id="section">4.5.1 (3/25/2016)</h2>
+
+<h3 id="bug-fixes">Bug Fixes</h3>
+
+<ul>
+  <li>&nbsp;Fix failures caused by the destorying order of singleton objects.</li>
+</ul>
+
+<p><br></p>
+
+<h2 id="section-1">4.5.0 (2/5/2016)</h2>
+
+<h3 id="public-api-changes">Public API Changes</h3>
+
+<ul>
+  <li>Add a new perf context level between kEnableCount and kEnableTime. Level 2 now does not include timers for mutexes.</li>
+  <li>Statistics of mutex operation durations will not be measured by default. If you want to have them enabled, you need to set Statistics::stats_level_ to kAll.</li>
+  <li>DBOptions::delete_scheduler and NewDeleteScheduler() are removed, please use DBOptions::sst_file_manager and NewSstFileManager() instead</li>
+</ul>
+
+<h3 id="new-features">New Features</h3>
+<ul>
+  <li>ldb tool now supports operations to non-default column families.</li>
+  <li>Add kPersistedTier to ReadTier. This option allows Get and MultiGet to read only the persited data and skip mem-tables if writes were done with disableWAL = true.</li>
+  <li>Add DBOptions::sst_file_manager. Use NewSstFileManager() in include/rocksdb/sst_file_manager.h to create a SstFileManager that can be used to track the total size of SST files and control the SST files deletion rate.</li>
+</ul>
+
+<p><br></p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2016/04/26/rocksdb-4-5-1-released.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(8)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Yueh-Hsuan Chiang</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2016/03/07/rocksdb-options-file.html">RocksDB Options File</a></h1>
+    <p class="post-meta">Posted March 07, 2016</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>In RocksDB 4.3, we added a new set of features that makes managing RocksDB options easier.  Specifically:</p>
+
+<ul>
+  <li>
+    <p><strong>Persisting Options Automatically</strong>: Each RocksDB database will now automatically persist its current set of options into an INI file on every successful call of DB::Open(), SetOptions(), and CreateColumnFamily() / DropColumnFamily().</p>
+  </li>
+  <li>
+    <p><strong>Load Options from File</strong>: We added <a href="https://github.com/facebook/rocksdb/blob/4.3.fb/include/rocksdb/utilities/options_util.h#L48-L58">LoadLatestOptions() / LoadOptionsFromFile()</a> that enables developers to construct RocksDB options object from an options file.</p>
+  </li>
+  <li>
+    <p><strong>Sanity Check Options</strong>: We added <a href="https://github.com/facebook/rocksdb/blob/4.3.fb/include/rocksdb/utilities/options_util.h#L64-L77">CheckOptionsCompatibility</a> that performs compatibility check on two sets of RocksDB options.</p>
+  </li>
+</ul>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2016/03/07/rocksdb-options-file.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2016/02/25/rocksdb-ama.html">RocksDB AMA</a></h1>
+    <p class="post-meta">Posted February 25, 2016</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>RocksDB developers are doing a Reddit Ask-Me-Anything now at 10AM – 11AM PDT! We welcome you to stop by and ask any RocksDB related questions, including existing / upcoming features, tuning tips, or database design.</p>
+
+<p>Here are some enhancements that we’d like to focus on over the next six months:</p>
+
+<ul>
+  <li>2-Phase Commit</li>
+  <li>Lua support in some custom functions</li>
+  <li>Backup and repair tools</li>
+  <li>Direct I/O to bypass OS cache</li>
+  <li>RocksDB Java API</li>
+</ul>
+
+<p><a href="https://www.reddit.com/r/IAmA/comments/47k1si/we_are_rocksdb_developers_ask_us_anything/">https://www.reddit.com/r/IAmA/comments/47k1si/we_are_rocksdb_developers_ask_us_anything/</a></p>
+
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(6)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Siying Dong</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2016/02/24/rocksdb-4-2-release.html">RocksDB 4.2 Release!</a></h1>
+    <p class="post-meta">Posted February 24, 2016</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>New RocksDB release - 4.2!</p>
+
+<p><strong>New Features</strong></p>
+
+<ol>
+  <li>
+    <p>Introduce CreateLoggerFromOptions(), this function create a Logger for provided DBOptions.</p>
+  </li>
+  <li>
+    <p>Add GetAggregatedIntProperty(), which returns the sum of the GetIntProperty of all the column families.</p>
+  </li>
+  <li>
+    <p>Add MemoryUtil in rocksdb/utilities/memory.h. It currently offers a way to get the memory usage by type from a list rocksdb instances.</p>
+  </li>
+</ol>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2016/02/24/rocksdb-4-2-release.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(6)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Siying Dong</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2016/01/29/compaction_pri.html">Option of Compaction Priority</a></h1>
+    <p class="post-meta">Posted January 29, 2016</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>The most popular compaction style of RocksDB is level-based compaction, which is an improved version of LevelDB’s compaction algorithm. Page 9- 16 of this&nbsp;<a href="https://github.com/facebook/rocksdb/blob/gh-pages/talks/2015-09-29-HPTS-Siying-RocksDB.pdf">slides</a> gives an illustrated introduction of this compaction style. The basic idea that: data is organized by multiple levels with exponential increasing target size. Except a special level 0, every level is key-range partitioned into many files. When size of a level exceeds its target size, we pick one or more of its files, and merge the file into the next level.</p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2016/01/29/compaction_pri.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(6)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Siying Dong</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2015/11/16/analysis-file-read-latency-by-level.html">Analysis File Read Latency by Level</a></h1>
+    <p class="post-meta">Posted November 16, 2015</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>In many use cases of RocksDB, people rely on OS page cache for caching compressed data. With this approach, verifying effective of the OS page caching is challenging, because file system is a black box to users.</p>
+
+<p>As an example, a user can tune the DB as following: use level-based compaction, with L1 - L4 sizes to be 1GB, 10GB, 100GB and 1TB. And they reserve about 20GB memory as OS page cache, expecting level 0, 1 and 2 are mostly cached in memory, leaving only reads from level 3 and 4 requiring disk I/Os. However, in practice, it’s not easy to verify whether OS page cache does exactly what we expect. For example, if we end up with doing 4 instead of 2 I/Os per query, it’s not easy for users to figure out whether the it’s because of efficiency of OS page cache or reading multiple blocks for a level. Analysis like it is especially important if users run RocksDB on hard drive disks, for the gap of latency between hard drives and memory is much higher than flash-based SSDs.</p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2015/11/16/analysis-file-read-latency-by-level.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(9)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Venkatesh Radhakrishnan</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2015/11/10/use-checkpoints-for-efficient-snapshots.html">Use Checkpoints for Efficient Snapshots</a></h1>
+    <p class="post-meta">Posted November 10, 2015</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p><strong>Checkpoint</strong>&nbsp;is a feature in RocksDB&nbsp;which provides the ability to take a snapshot of a running RocksDB database in a separate directory. Checkpoints can be used as a point in time snapshot, which can be opened Read-only to query rows as of the point in time or as a Writeable snapshot by opening it Read-Write. Checkpoints can be used for both full and incremental backups.</p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2015/11/10/use-checkpoints-for-efficient-snapshots.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(8)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Yueh-Hsuan Chiang</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2015/10/27/getthreadlist.html">GetThreadList</a></h1>
+    <p class="post-meta">Posted October 27, 2015</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>We recently added a new API, called <code class="highlighter-rouge">GetThreadList()</code>, that exposes the RocksDB&nbsp;background thread activity. With this feature, developers will be able to&nbsp;obtain the real-time information about the currently running compactions&nbsp;and flushes such as the input / output size, elapsed time, the number of&nbsp;bytes it has written. Below is an example output of <code class="highlighter-rouge">GetThreadList</code>.  To better illustrate the example, we have put a sample output of <code class="highlighter-rouge">GetThreadList</code> into a table where each column represents a thread status:</p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2015/10/27/getthreadlist.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(6)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Siying Dong</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2015/07/23/dynamic-level.html">Dynamic Level Size for Level-Based Compaction</a></h1>
+    <p class="post-meta">Posted July 23, 2015</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>In this article, we follow up on the first part of an answer to one of the questions in our <a href="https://www.reddit.com/r/IAmA/comments/3de3cv/we_are_rocksdb_engineering_team_ask_us_anything/ct4a8tb">AMA</a>, the dynamic level size in level-based compaction.</p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2015/07/23/dynamic-level.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    
+    <p class="post-authorName">Dmitri Smirnov</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2015/07/22/rocksdb-is-now-available-in-windows-platform.html">RocksDB is now available in Windows Platform</a></h1>
+    <p class="post-meta">Posted July 22, 2015</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>Over the past 6 months we have seen a number of use cases where RocksDB is successfully used by the community and various companies to achieve high throughput and volume in a modern server environment.</p>
+
+<p>We at Microsoft Bing could not be left behind. As a result we are happy to <a href="http://bit.ly/1OmWBT9">announce</a> the availability of the Windows Port created here at Microsoft which we intend to use as a storage option for one of our key/value data stores.</p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2015/07/22/rocksdb-is-now-available-in-windows-platform.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(10)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Igor Canadi</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2015/07/17/spatial-indexing-in-rocksdb.html">Spatial indexing in RocksDB</a></h1>
+    <p class="post-meta">Posted July 17, 2015</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>About a year ago, there was a need to develop a spatial database at Facebook. We needed to store and index Earth’s map data. Before building our own, we looked at the existing spatial databases. They were all very good technology, but also general purpose. We could sacrifice a general-purpose API, so we thought we could build a more performant database, since it would be specifically designed for our use-case. Furthermore, we decided to build the spatial database on top of RocksDB, because we have a lot of operational experience with running and tuning RocksDB at a large scale.</p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2015/07/17/spatial-indexing-in-rocksdb.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(10)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Igor Canadi</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2015/07/15/rocksdb-2015-h2-roadmap.html">RocksDB 2015 H2 roadmap</a></h1>
+    <p class="post-meta">Posted July 15, 2015</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>Every 6 months, RocksDB team gets together to prioritize the work ahead of us. We just went through this exercise and we wanted to share the results with the community. Here’s what RocksDB team will be focusing on for the next 6 months:</p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2015/07/15/rocksdb-2015-h2-roadmap.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(10)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Igor Canadi</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2015/06/12/rocksdb-in-osquery.html">RocksDB in osquery</a></h1>
+    <p class="post-meta">Posted June 12, 2015</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>Check out <a href="https://code.facebook.com/posts/1411870269134471/how-rocksdb-is-used-in-osquery/">this</a> blog post by <a href="https://www.facebook.com/mike.arpaia">Mike Arpaia</a> and <a href="https://www.facebook.com/treeded">Ted Reed</a> about how osquery leverages RocksDB to build an embedded pub-sub system. This article is a great read and contains insights on how to properly use RocksDB.</p>
+
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(10)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Igor Canadi</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2015/04/22/integrating-rocksdb-with-mongodb-2.html">Integrating RocksDB with MongoDB</a></h1>
+    <p class="post-meta">Posted April 22, 2015</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>Over the last couple of years, we have been busy integrating RocksDB with various services here at Facebook that needed to store key-value pairs locally. We have also seen other companies using RocksDB as local storage components of their distributed systems.</p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2015/04/22/integrating-rocksdb-with-mongodb-2.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(6)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Siying Dong</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2015/02/27/write-batch-with-index.html">WriteBatchWithIndex: Utility for Implementing Read-Your-Own-Writes</a></h1>
+    <p class="post-meta">Posted February 27, 2015</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>RocksDB can be used as a storage engine of a higher level database. In fact, we are currently plugging RocksDB into MySQL and MongoDB as one of their storage engines. RocksDB can help with guaranteeing some of the ACID properties: durability is guaranteed by RocksDB by design; while consistency and isolation need to be enforced by concurrency controls on top of RocksDB; Atomicity can be implemented by committing a transaction’s writes with one write batch to RocksDB in the end.</p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2015/02/27/write-batch-with-index.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(11)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Leonidas Galanis</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2015/02/24/reading-rocksdb-options-from-a-file.html">Reading RocksDB options from a file</a></h1>
+    <p class="post-meta">Posted February 24, 2015</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>RocksDB options can be provided using a file or any string to RocksDB. The format is straightforward: <code class="highlighter-rouge">write_buffer_size=1024;max_write_buffer_number=2</code>. Any whitespace around <code class="highlighter-rouge">=</code> and <code class="highlighter-rouge">;</code> is OK. Moreover, options can be nested as necessary. For example <code class="highlighter-rouge">BlockBasedTableOptions</code> can be nested as follows: <code class="highlighter-rouge">write_buffer_size=1024; max_write_buffer_number=2; block_based_table_factory={block_size=4k};</code>. Similarly any white space around <code class="highlighter-rouge"><span class="p">{</span></code> or <code class="highlighter-rouge">}</code> is ok. Here is what it looks like in code:</p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2015/02/24/reading-rocksdb-options-from-a-file.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(11)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Leonidas Galanis</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2015/01/16/migrating-from-leveldb-to-rocksdb-2.html">Migrating from LevelDB to RocksDB</a></h1>
+    <p class="post-meta">Posted January 16, 2015</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>If you have an existing application that uses LevelDB and would like to migrate to using RocksDB, one problem you need to overcome is to map the options for LevelDB to proper options for RocksDB. As of release 3.9 this can be automatically done by using our option conversion utility found in rocksdb/utilities/leveldb_options.h. What is needed, is to first replace <code class="highlighter-rouge">leveldb::Options</code> with <code class="highlighter-rouge">rocksdb::LevelDBOptions</code>. Then, use <code class="highlighter-rouge">rocksdb::ConvertOptions( )</code> to convert the <code class="highlighter-rouge">LevelDBOptions</code> struct into appropriate RocksDB options. Here is an example:</p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2015/01/16/migrating-from-leveldb-to-rocksdb-2.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(12)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Lei Jin</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2014/09/15/rocksdb-3-5-release.html">RocksDB 3.5 Release!</a></h1>
+    <p class="post-meta">Posted September 15, 2014</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>New RocksDB release - 3.5!</p>
+
+<p><strong>New Features</strong></p>
+
+<ol>
+  <li>
+    <p>Add include/utilities/write_batch_with_index.h, providing a utility class to query data out of WriteBatch when building it.</p>
+  </li>
+  <li>
+    <p>new ReadOptions.total_order_seek to force total order seek when block-based table is built with hash index.</p>
+  </li>
+</ol>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2014/09/15/rocksdb-3-5-release.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(13)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Feng Zhu</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2014/09/12/new-bloom-filter-format.html">New Bloom Filter Format</a></h1>
+    <p class="post-meta">Posted September 12, 2014</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <h2 id="introduction">Introduction</h2>
+
+<p>In this post, we are&nbsp;introducing “full filter block” — a&nbsp;new bloom filter format for&nbsp;<a href="https://github.com/facebook/rocksdb/wiki/Rocksdb-BlockBasedTable-Format">block based table</a>. This could bring about 40% of improvement for key query under in-memory (all data stored in&nbsp;memory, files stored in&nbsp;tmpfs/ramfs, an&nbsp;<a href="https://github.com/facebook/rocksdb/wiki/RocksDB-In-Memory-Workload-Performance-Benchmarks">example</a>&nbsp;workload. The main idea behind is to generate a big filter that covers all the keys in SST file to avoid lots of unnecessary memory look ups.</p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2014/09/12/new-bloom-filter-format.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(14)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Radheshyam Balasundaram</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2014/09/12/cuckoo.html">Cuckoo Hashing Table Format</a></h1>
+    <p class="post-meta">Posted September 12, 2014</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <h2 id="introduction">Introduction</h2>
+
+<p>We recently introduced a new <a href="http://en.wikipedia.org/wiki/Cuckoo_hashing">Cuckoo Hashing</a>&nbsp;based SST file format which is optimized for fast point&nbsp;lookups. The new format&nbsp;was built for applications which require very high point&nbsp;lookup&nbsp;rates (~4Mqps) in read only mode but do not use operations like range scan, merge operator, etc. But, the existing&nbsp;RocksDB&nbsp;file formats were built to support range scan and other operations and the current best point&nbsp;lookup&nbsp;in&nbsp;RocksDB&nbsp;is 1.2&nbsp;Mqps&nbsp;given by <a href="https://github.com/facebook/rocksdb/wiki/PlainTable-Format">PlainTable</a><a href="https://github.com/facebook/rocksdb/wiki/PlainTable-Format">&nbsp;format</a>.&nbsp;This prompted a hashing based file format, which we present here. The new table format uses a cache friendly version of Cuckoo Hashing algorithm with only 1 or 2 memory accesses per&nbsp;lookup.</p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2014/09/12/cuckoo.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(8)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Yueh-Hsuan Chiang</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2014/07/29/rocksdb-3-3-release.html">RocksDB 3.3 Release</a></h1>
+    <p class="post-meta">Posted July 29, 2014</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>Check out new RocksDB release on&nbsp;<a href="https://github.com/facebook/rocksdb/releases/tag/rocksdb-3.3">GitHub</a>!</p>
+
+<p>New Features in RocksDB 3.3:</p>
+
+<ul>
+  <li>
+    <p><strong>JSON API prototype</strong>.</p>
+  </li>
+  <li>
+    <p><strong>Performance improvement on HashLinkList</strong>:  We addressed performance outlier of HashLinkList caused by skewed bucket by switching data in the bucket from linked list to skip list. Add parameter threshold_use_skiplist in NewHashLinkListRepFactory().</p>
+  </li>
+</ul>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2014/07/29/rocksdb-3-3-release.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(12)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Lei Jin</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2014/06/27/rocksdb-3-2-release.html">RocksDB 3.2 release</a></h1>
+    <p class="post-meta">Posted June 27, 2014</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>Check out new RocksDB release on&nbsp;<a href="https://github.com/facebook/rocksdb/releases/tag/rocksdb-3.2">GitHub</a>!</p>
+
+<p>New Features in RocksDB 3.2:</p>
+
+<ul>
+  <li>
+    <p>PlainTable now supports a new key encoding: for keys of the same prefix, the prefix is only written once. It can be enabled through encoding_type paramter of NewPlainTableFactory()</p>
+  </li>
+  <li>
+    <p>Add AdaptiveTableFactory, which is used to convert from a DB of PlainTable to BlockBasedTabe, or vise versa. It can be created using NewAdaptiveTableFactory()</p>
+  </li>
+</ul>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2014/06/27/rocksdb-3-2-release.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(12)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Lei Jin</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2014/06/27/avoid-expensive-locks-in-get.html">Avoid Expensive Locks in Get()</a></h1>
+    <p class="post-meta">Posted June 27, 2014</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>As promised in the previous <a href="http://localhost:4000/blog/blog/2014/05/14/lock.html">blog post</a>!</p>
+
+<p>RocksDB employs a multiversion concurrency control strategy. Before reading data, it needs to grab the current version, which is encapsulated in a data structure called <a href="https://reviews.facebook.net/rROCKSDB1fdb3f7dc60e96394e3e5b69a46ede5d67fb976c">SuperVersion</a>.</p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2014/06/27/avoid-expensive-locks-in-get.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(6)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Siying Dong</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2014/06/23/plaintable-a-new-file-format.html">PlainTable — A New File Format</a></h1>
+    <p class="post-meta">Posted June 23, 2014</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>In this post, we are introducing “PlainTable” – a file format we designed for RocksDB, initially to satisfy a production use case at Facebook.</p>
+
+<p>Design goals:</p>
+
+<ol>
+  <li>All data stored in memory, in files stored in tmpfs/ramfs. Support DBs larger than 100GB (may be sharded across multiple RocksDB instance).</li>
+  <li>Optimize for <a href="https://github.com/facebook/rocksdb/raw/gh-pages/talks/2014-03-27-RocksDB-Meetup-Siying-Prefix-Hash.pdf">prefix hashing</a></li>
+  <li>Less than or around 1 micro-second average latency for single Get() or Seek().</li>
+  <li>Minimize memory consumption.</li>
+  <li>Queries efficiently return empty results</li>
+</ol>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2014/06/23/plaintable-a-new-file-format.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(10)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Igor Canadi</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2014/05/22/rocksdb-3-1-release.html">RocksDB 3.1 release</a></h1>
+    <p class="post-meta">Posted May 22, 2014</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>Check out the new release on <a href="https://github.com/facebook/rocksdb/releases/tag/rocksdb-3.1">Github</a>!</p>
+
+<p>New features in RocksDB 3.1:</p>
+
+<ul>
+  <li>
+    <p><a href="https://github.com/facebook/rocksdb/commit/0b3d03d026a7248e438341264b4c6df339edc1d7">Materialized hash index</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/facebook/rocksdb/wiki/FIFO-compaction-style">FIFO compaction style</a></p>
+  </li>
+</ul>
+
+<p>We released 3.1 so fast after 3.0 because one of our internal customers needed materialized hash index.</p>
+
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(10)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Igor Canadi</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2014/05/19/rocksdb-3-0-release.html">RocksDB 3.0 release</a></h1>
+    <p class="post-meta">Posted May 19, 2014</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>Check out new RocksDB release on <a href="https://github.com/facebook/rocksdb/releases/tag/3.0.fb">Github</a>!</p>
+
+<p>New features in RocksDB 3.0:</p>
+
+<ul>
+  <li>
+    <p><a href="https://github.com/facebook/rocksdb/wiki/Column-Families">Column Family support</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/facebook/rocksdb/commit/0afc8bc29a5800e3212388c327c750d32e31f3d6">Ability to chose different checksum function</a></p>
+  </li>
+  <li>
+    <p>Deprecated ReadOptions::prefix_seek and ReadOptions::prefix</p>
+  </li>
+</ul>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2014/05/19/rocksdb-3-0-release.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(6)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Siying Dong</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2014/05/14/lock.html">Reducing Lock Contention in RocksDB</a></h1>
+    <p class="post-meta">Posted May 14, 2014</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>In this post, we briefly introduce the recent improvements we did to RocksDB to improve the issue of lock contention costs.</p>
+
+<p>RocksDB has a simple thread synchronization mechanism (See <a href="https://github.com/facebook/rocksdb/wiki/Rocksdb-Architecture-Guide">RocksDB Architecture Guide</a> &nbsp;to understand terms used below, like SST tables or mem tables). SST tables are immutable after being written&nbsp;and mem tables are lock-free data structures supporting single writer and multiple readers. There is only one single major lock, the DB mutex (DBImpl.mutex_) protecting all the meta operations, including:</p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2014/05/14/lock.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(12)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Lei Jin</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2014/04/21/indexing-sst-files-for-better-lookup-performance.html">Indexing SST Files for Better Lookup Performance</a></h1>
+    <p class="post-meta">Posted April 21, 2014</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>For a <code class="highlighter-rouge">Get()</code> request, RocksDB goes through mutable memtable, list of immutable memtables, and SST files to look up the target key. SST files are organized in levels.</p>
+
+<p>On level 0, files are sorted based on the time they are flushed. Their key range (as defined by FileMetaData.smallest and FileMetaData.largest) are mostly overlapped with each other. So it needs to look up every L0 file.</p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2014/04/21/indexing-sst-files-for-better-lookup-performance.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(10)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Igor Canadi</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2014/04/07/rocksdb-2-8-release.html">RocksDB 2.8 release</a></h1>
+    <p class="post-meta">Posted April 07, 2014</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>Check out the new RocksDB 2.8 release on <a href="https://github.com/facebook/rocksdb/releases/tag/2.8.fb">Github</a>.</p>
+
+<p>RocksDB 2.8. is mostly focused on improving performance for in-memory workloads. We are seeing read QPS as high as 5M (we will write a separate blog post on this).</p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2014/04/07/rocksdb-2-8-release.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(15)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Xing Jin</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2014/04/02/the-1st-rocksdb-local-meetup-held-on-march-27-2014.html">The 1st RocksDB Local Meetup Held on March 27, 2014</a></h1>
+    <p class="post-meta">Posted April 02, 2014</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>On Mar 27, 2014, RocksDB team @ Facebook held the 1st RocksDB local meetup in FB HQ (Menlo Park, California). We invited around 80 guests from 20+ local companies, including LinkedIn, Twitter, Dropbox, Square, Pinterest, MapR, Microsoft and IBM. Finally around 50 guests showed up, totaling around 60% show-up rate.</p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2014/04/02/the-1st-rocksdb-local-meetup-held-on-march-27-2014.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(10)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Igor Canadi</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2014/03/27/how-to-persist-in-memory-rocksdb-database.html">How to persist in-memory RocksDB database?</a></h1>
+    <p class="post-meta">Posted March 27, 2014</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>In recent months, we have focused on optimizing RocksDB for in-memory workloads. With growing RAM sizes and strict low-latency requirements, lots of applications decide to keep their entire data in memory. Running in-memory database with RocksDB is easy – just mount your RocksDB directory on tmpfs or ramfs [1]. Even if the process crashes, RocksDB can recover all of your data from in-memory filesystem. However, what happens if the machine reboots?</p>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2014/03/27/how-to-persist-in-memory-rocksdb-database.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+    <div class="post">
+  
+  <header class="post-header">
+    
+    <div class="authorPhoto">
+      <img src="./Blog _ RocksDB_files/saved_resource(10)" alt="" title="">
+    </div>
+    
+    
+    <p class="post-authorName">Igor Canadi</p>
+    
+    <h1 class="post-title"><a href="http://localhost:4000/blog/2014/03/27/how-to-backup-rocksdb.html">How to backup RocksDB?</a></h1>
+    <p class="post-meta">Posted March 27, 2014</p>
+  </header>
+
+  <article class="post-content">
+  
+    
+      <p>In RocksDB, we have implemented an easy way to backup your DB. Here is a simple example:</p>
+
+<div class="highlighter-rouge"><div class="rougeHighlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10</pre></td><td class="code"><pre>#include "rocksdb/db.h"
+#include "utilities/backupable_db.h"
+using namespace rocksdb;
+
+DB* db;
+DB::Open(Options(), "/tmp/rocksdb", &amp;db);
+BackupableDB* backupable_db = new BackupableDB(db, BackupableDBOptions("/tmp/rocksdb_backup"));
+backupable_db-&gt;Put(...); // do your thing
+backupable_db-&gt;CreateNewBackup();
+delete backupable_db; // no need to also delete db
+</pre></td></tr></tbody></table>
+</div>
+</div>
+
+
+      <div class="read-more">
+        <a href="http://localhost:4000/blog/2014/03/27/how-to-backup-rocksdb.html">
+          Read More
+        </a>
+      </div>
+    
+  
+  
+  </article>
+</div>
+
+  
+</div>
+
+  </div>
+</div>
+
+
+      </div>
+      <div class="footerContainer">
+  <div id="footer_wrap" class="wrapper footerWrapper">
+    <div class="footerBlocks">
+      <div id="fb_oss" class="footerSection fbOpenSourceFooter">
+          <svg class="facebookOSSLogoSvg" viewBox="0 0 1133.9 1133.9" x="0px" y="0px">
+            <g>
+              <path class="logoRing outerRing" d="M 498.3 3.7 c 153.6 88.9 307.3 177.7 461.1 266.2 c 7.6 4.4 10.3 9.1 10.3 17.8 c -0.3 179.1 -0.2 358.3 0 537.4 c 0 8.1 -2.4 12.8 -9.7 17.1 c -154.5 88.9 -308.8 178.1 -462.9 267.5 c -9 5.2 -15.5 5.3 -24.6 0.1 c -153.9 -89.2 -307.9 -178 -462.1 -266.8 C 3 838.8 0 833.9 0 825.1 c 0.3 -179.1 0.2 -358.3 0 -537.4 c 0 -8.6 2.6 -13.6 10.2 -18 C 164.4 180.9 318.4 92 472.4 3 C 477 -1.5 494.3 -0.7 498.3 3.7 Z M 48.8 555.3 c 0 79.9 0.2 159.9 -0.2 239.8 c -0.1 10 3 15.6 11.7 20.6 c 137.2 78.8 274.2 157.8 411 237.3 c 9.9 5.7 17 5.7 26.8 0.1 c 137.5 -79.8 275.2 -159.2 412.9 -238.5 c 7.4 -4.3 10.5 -8.9 10.5 -17.8 c -0.3 -160.2 -0.3 -320.5 0 -480.7 c 0 -8.8 -2.8 -13.6 -10.3 -18 C 772.1 218 633.1 137.8 494.2 57.4 c -6.5 -3.8 -11.5 -4.5 -18.5 -0.5 C 336.8 137.4 197.9 217.7 58.8 297.7 c -7.7 4.4 -10.2 9.2 -10.2 17.9 C 48.9 395.5 48.8 475.4 48.8 555.3 Z"></path>
+              <path class="logoRing middleRing" d="M 184.4 555.9 c 0 -33.3 -1 -66.7 0.3 -100 c 1.9 -48 24.1 -86 64.7 -110.9 c 54.8 -33.6 110.7 -65.5 167 -96.6 c 45.7 -25.2 92.9 -24.7 138.6 1 c 54.4 30.6 108.7 61.5 162.2 93.7 c 44 26.5 67.3 66.8 68 118.4 c 0.9 63.2 0.9 126.5 0 189.7 c -0.7 50.6 -23.4 90.7 -66.6 116.9 c -55 33.4 -110.8 65.4 -167.1 96.5 c -43.4 24 -89 24.2 -132.3 0.5 c -57.5 -31.3 -114.2 -64 -170 -98.3 c -41 -25.1 -62.9 -63.7 -64.5 -112.2 C 183.5 621.9 184.3 588.9 184.4 555.9 Z M 232.9 556.3 c 0 29.5 0.5 59.1 -0.1 88.6 c -0.8 39.2 16.9 67.1 50.2 86.2 c 51.2 29.4 102.2 59.2 153.4 88.4 c 31.4 17.9 63.6 18.3 95 0.6 c 53.7 -30.3 107.1 -61.2 160.3 -92.5 c 29.7 -17.5 45 -44.5 45.3 -78.8 c 0.6 -61.7 0.5 -123.5 0 -185.2 c -0.3 -34.4 -15.3 -61.5 -44.9 -79 C 637.7 352.6 583 320.8 527.9 290 c -27.5 -15.4 -57.2 -16.1 -84.7 -0.7 c -56.9 31.6 -113.4 64 -169.1 97.6 c -26.4 15.9 -40.7 41.3 -41.1 72.9 C 232.6 491.9 232.9 524.1 232.9 556.3 Z"></path>
+              <path class="logoRing innerRing" d="M 484.9 424.4 c 69.8 -2.8 133.2 57.8 132.6 132 C 617 630 558.5 688.7 484.9 689.1 c -75.1 0.4 -132.6 -63.6 -132.7 -132.7 C 352.1 485 413.4 421.5 484.9 424.4 Z M 401.3 556.7 c -3.4 37.2 30.5 83.6 83 84.1 c 46.6 0.4 84.8 -37.6 84.9 -84 c 0.1 -46.6 -37.2 -84.4 -84.2 -84.6 C 432.2 472.1 397.9 518.3 401.3 556.7 Z"></path>
+            </g>
+          </svg>
+        <h2>Facebook Open Source</h2>
+      </div>
+      <div class="footerSection">
+        <a class="footerLink" href="https://code.facebook.com/projects/" target="_blank">Open Source Projects</a>
+        <a class="footerLink" href="https://github.com/facebook/" target="_blank">GitHub</a>
+        <a class="footerLink" href="https://twitter.com/fbOpenSource" target="_blank">Twitter</a>
+      </div>
+      <div class="footerSection rightAlign">
+        <a class="footerLink" href="https://github.com/facebook/rocksdb" target="_blank">Contribute to this project on GitHub</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49459723-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+    </div>
+  
+
+</body></html>
